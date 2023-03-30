@@ -3,6 +3,7 @@ import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import { useNavigate, useParams } from "react-router-dom";
+import NavBar from "../../components/NavBar";
 
 export default function PatientRegister(props) {
   const [isLoading, setLoading] = useState(false);
@@ -59,6 +60,7 @@ export default function PatientRegister(props) {
 
   return (
     <>
+      <NavBar/>
       <div className="mt-5">.</div>
       {error ? (
         <div

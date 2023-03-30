@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useStateValue } from "../../Context/StateProvider";
 import { actionTypes } from "../../Context/reducer";
 import { Link } from "react-router-dom";
+import NavBar from "../../components/NavBar";
 
 export default function HospitalLogin(props) {
   const [isLoading, setLoading] = useState(false);
@@ -57,6 +58,7 @@ export default function HospitalLogin(props) {
 
   return (
     <>
+      <NavBar/>
       <div className="mt-5">.</div>
       {error ? (
         <div
