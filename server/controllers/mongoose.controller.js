@@ -1,5 +1,7 @@
 var mongooes = require("mongoose");
-async function connectToDb(database = "")
+
+
+async function connectToDb(database = "SystemDatabase")
 {
     const mongo_url = "mongodb+srv://medicare123:12345@medicaredatabase.tf6sovc.mongodb.net/"+database+"?retryWrites=true&w=majority"
     try{
@@ -13,7 +15,7 @@ async function connectToDb(database = "")
 async function disconnectToDb()
 {
     try{
-        await mongooes.connection.close();
+        mongooes.disconnect();
         console.log("Connection Disconnected...");
     }
     catch(e){

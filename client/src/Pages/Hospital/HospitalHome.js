@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { useStateValue } from "../../Context/StateProvider";
+import HospitalNavbar from "../Hospital/HospitalNavbar";
+import HospitalHeader from "../Hospital/HospitalHeader"
 
 export default function HospitalHome(props) {
     const navigate = useNavigate();
@@ -8,10 +10,13 @@ export default function HospitalHome(props) {
 
   useEffect(()=>{
     console.log(HospitalUser);
-    if(HospitalUser === null)
+    if(HospitalUser === null || HospitalUser === "null")
     {
         navigate("/hospitalLogin");
     }
   },[]);
-  return <> <h1>Hello, Patient Home {HospitalUser}</h1> </>
+  return <>
+    <HospitalNavbar />
+    <HospitalHeader />
+  </>
 }

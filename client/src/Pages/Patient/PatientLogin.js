@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
+import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { useStateValue } from "../Context/StateProvider";
-import { actionTypes } from "../Context/reducer";
+import { useStateValue } from "../../Context/StateProvider";
+import { actionTypes } from "../../Context/reducer";
 import { Link } from "react-router-dom";
 
 export default function PatientLogin(props) {

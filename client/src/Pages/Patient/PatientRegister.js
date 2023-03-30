@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
+import "../../App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function PatientRegister(props) {
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorType, setErrorType] = useState("");
+  const navigate = useNavigate();
   const URL = "/api/patientReg/";
 
   const [formData, setFormData] = useState({
@@ -40,9 +42,11 @@ export default function PatientRegister(props) {
           console.log(json);
         }, 1500);
       }
-      else{
-        //Navigate
+      else if(respones.status == 200){
+        console.log(json);
+        navigate("/patientLogin");
       }
+
     } catch (e) {
       console.log("Error : ", e);
     }

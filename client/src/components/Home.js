@@ -21,7 +21,7 @@ export default function Home(props) {
   }
   return (
     <>
-      <h1>Hello, Patient Home </h1>
+      <h1>Hello, Home </h1>
       <div className="btn-group mx-auto p-2" role="group" aria-label="Basic example">
         <button type="button" className="btn btn-primary mx-5" onClick={doctorClick}>
           Doctor

@@ -1,8 +1,8 @@
 
 import './App.css';
-import PatientRegister from './components/PatientRegister';
-import PatientLogin from './components/PatientLogin';
-import PatientHome from './components/PatientHome';
+import PatientRegister from './Pages/Patient/PatientRegister';
+import PatientLogin from './Pages/Patient/PatientLogin';
+import PatientHome from './Pages/Patient/PatientHome';
 import Test from './components/Test';
 import Home from './components/Home';
 import HospitalHome from './Pages/Hospital/HospitalHome';

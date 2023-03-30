@@ -8,7 +8,7 @@ const app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-//connectToDb();
+connectToDb();
 app.use("/api",apiRouter);
 app.use("*", (req, res) => {
   res.send("Home Page");

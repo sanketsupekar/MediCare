@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const PatientProfile = require("../model/patient.model");
-const { connectToDb } = require("../controllers/mongoose.controller");
+const { connectToDb,disconnectToDb } = require("../controllers/mongoose.controller");
 const {
   patientRegister,
   patientLogin,
@@ -46,6 +46,7 @@ router.post("/patientLogin", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+    
 });
 
 router.post("/patientReg", (req, res) => {
