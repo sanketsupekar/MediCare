@@ -29,11 +29,12 @@ export default function Header() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           width: "100%",
+          height:"100vh",
           backgroundColor: "black",
         }}
       >
         <div className=" header-wrapper w-50 m-auto my-5 py-5">
-          <div className="card-header">Welcome</div>
+          <div className="card-title">Welcome</div>
           <div className="card-body">
             <h1 className="card-title fw-bolder">MediCare</h1>
             {/* <p className="card-text fw-lighter ">

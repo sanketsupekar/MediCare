@@ -20,7 +20,13 @@ export default function PatientLogin(props) {
     p_id: "",
     password: "",
   });
-
+  function clearInputBox()
+  {
+    setFormData({
+      p_id: "",
+      password: "",
+    });
+  }
   async function uploadingData(url, data) {
     try {
       setLoading(true);
@@ -39,6 +45,14 @@ export default function PatientLogin(props) {
           PatientUser: data.p_id,
         });
         navigate("/patientHome");
+      } else {
+        setErrorType(json.message);
+        clearInputBox();
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+          console.log(json);
+        }, 1500);
       }
       setLoading(false);
     } catch (e) {
@@ -58,7 +72,7 @@ export default function PatientLogin(props) {
 
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <div className="mt-5">.</div>
       {error ? (
         <div

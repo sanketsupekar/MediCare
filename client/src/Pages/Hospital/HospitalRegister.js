@@ -10,6 +10,7 @@ export default function PatientRegister(props) {
   const [error, setError] = useState(false);
   const [errorType, setErrorType] = useState("");
   const URL = "/api/hospitalReg/";
+  
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({

@@ -20,7 +20,12 @@ export default function HospitalLogin(props) {
     h_id: "",
     password: "",
   });
-
+  function clearInputBox() {
+    setFormData({
+      h_id: "",
+      password: "",
+    });
+  }
   async function uploadingData(url, data) {
     try {
       setLoading(true);
@@ -39,6 +44,14 @@ export default function HospitalLogin(props) {
           HospitalUser: data.h_id,
         });
         navigate("/hospitalHome");
+      } else {
+        setErrorType(json.message);
+        clearInputBox();
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+          console.log(json);
+        }, 1500);
       }
       setLoading(false);
     } catch (e) {
@@ -58,7 +71,7 @@ export default function HospitalLogin(props) {
 
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <div className="mt-5">.</div>
       {error ? (
         <div
