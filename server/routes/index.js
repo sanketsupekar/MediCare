@@ -1,13 +1,23 @@
 const express = require("express");
 const router = express.Router();
 const PatientProfile = require("../model/patient.model");
-const { connectToDb,disconnectToDb } = require("../controllers/mongoose.controller");
+const {
+  connectToDb,
+  disconnectToDb,
+} = require("../controllers/mongoose.controller");
 const {
   patientRegister,
   patientLogin,
 } = require("../controllers/patient.controller");
-const { hospitalRegister, hospitalLogin } = require("../controllers/hospital.controller");
+const {
+  hospitalRegister,
+  hospitalLogin,
+} = require("../controllers/hospital.controller");
 
+const {
+  doctorRegister,
+  doctorLogin,
+} = require("../controllers/doctor.controller");
 const patientUser = {
   p_id: "P101",
   firstName: "Sanket",
@@ -46,11 +56,9 @@ router.post("/patientLogin", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-    
 });
 
 router.post("/patientReg", (req, res) => {
-
   patientRegister(req)
     .then((result) => {
       res.status(200).json(result);
@@ -88,6 +96,37 @@ router.post("/hospitalReg", (req, res) => {
     .catch((e) => {
       console.log(e);
       res.status(500).json({ message: "Internet Server Error" });
+    });
+});
+
+router.post("/addDoctor", (req, res) => {
+  console.log(req.body);
+  doctorRegister(req)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((e) => {
+      console.log(e);
+      res.status(500).json({ message: "Internet Server Error" });
+    });
+});
+
+router.post("/doctorLogin", (req, res) => {
+  const d_id = req.body.d_id;
+  const password = req.body.password;
+  doctorLogin(req)
+    .then((result) => {
+      console.log(result);
+      if (result === null) {
+        res.status(404).json({ message: "Invalid Hospital" });
+      } else if (result.d_id === d_id && result.password === password) {
+        res.status(200).json({ message: "Login Success" });
+      } else {
+        res.status(404).json({ message: "Invalid Password" });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 

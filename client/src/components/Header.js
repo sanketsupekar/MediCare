@@ -8,6 +8,7 @@ export default function Header() {
   function doctorClick()
   {
         console.log("Doctor Click");
+        navigate("/doctorLogin");
   }
   function patientClick()
   {

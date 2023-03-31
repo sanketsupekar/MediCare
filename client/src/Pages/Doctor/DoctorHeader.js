@@ -2,8 +2,8 @@ import React from "react";
 import headerbg from "../../image/header_img.jpg";
 import { useStateValue } from "../../Context/StateProvider";
 
-export default function PatientHeader() {
-  const [{ HospitalUser }, dispatchUser] = useStateValue();
+export default function DoctorHeader() {
+  const [{ DoctorUser }, dispatchUser] = useStateValue();
   return (
     <>
       <div
@@ -17,9 +17,9 @@ export default function PatientHeader() {
         }}
       >
         <div className=" header-wrapper w-50 m-auto my-5 py-5">
-          <div className="">Welcome</div>
+          <div className="card-header">Welcome</div>
           <div className="card-body">
-            <h1 className="card-title fw-bolder">Hey, {HospitalUser}</h1>
+            <h1 className="card-title fw-bolder">Hey, {DoctorUser}</h1>
             {/* <p className="card-text fw-lighter ">
               <span className="fw-bolder ">
                 This is a simple phone directory web application which supports

@@ -5,18 +5,13 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../Context/StateProvider";
 import { actionTypes } from "../../Context/reducer";
 import { useNavigate, useParams } from "react-router-dom";
-
 import '../../App';
 
-export default function PatientNavbar() {
+export default function DoctorNavbar() {
   function logoutUser()
   {
       window.localStorage.clear();
       window.location.reload();
-  }
-  function addDoctor()
-  {
-    console.log("Doctor Added");
   }
   return (
     <>
@@ -58,15 +53,6 @@ export default function PatientNavbar() {
                   </a>
                 </Link>
               </li>
-
-              <li className="nav-item mx-2">
-                <Link to="/addDoctor" className="text-decoration-none">
-                  <a className="nav-link active" aria-current="page" >
-                    ADD-DOCTOR
-                  </a>
-                </Link>
-              </li>
-
               <li className="nav-item mx-2">
                 <Link className="text-decoration-none">
                   <a className="nav-link active" aria-current="page" onClick={logoutUser}>

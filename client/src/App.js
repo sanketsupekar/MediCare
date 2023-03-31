@@ -8,8 +8,11 @@ import Home from './components/Home';
 import HospitalHome from './Pages/Hospital/HospitalHome';
 import HospitalLogin from './Pages/Hospital/HospitalLogin';
 import HospitalRegister from './Pages/Hospital/HospitalRegister';
+import DoctorLogin from './Pages/Doctor/DoctorLogin';
+import DoctorHome from './Pages/Doctor/DoctorHome';
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import HospitalAddDoctor from './Pages/Hospital/HospitalAddDoctor';
 
 function App() {
   return (
@@ -24,7 +27,10 @@ function App() {
           <Route path="hospitalHome" element={<HospitalHome />}></Route>
           <Route path="hospitalLogin" element={<HospitalLogin />} />
           <Route path="hospitalRegister" element={<HospitalRegister />} />
+          <Route path="addDoctor" element={<HospitalAddDoctor />} />
 
+          <Route path="doctorLogin" element={<DoctorLogin />} />
+          <Route path="doctorHome" element={<DoctorHome />}></Route>
           <Route path="*" element={<Navigate replace to="home" />} />
         </Routes>
       </BrowserRouter>
