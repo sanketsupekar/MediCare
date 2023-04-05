@@ -31,6 +31,7 @@ function App() {
 
           <Route path="doctorLogin" element={<DoctorLogin />} />
           <Route path="doctorHome" element={<DoctorHome />}></Route>
+          <Route path="test" element={<Test/>}> </Route>
           <Route path="*" element={<Navigate replace to="home" />} />
         </Routes>
       </BrowserRouter>

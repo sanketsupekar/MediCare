@@ -18,4 +18,12 @@ async function patientLogin(req)
     return patientLogin;
 
 }
-module.exports = {patientRegister,patientLogin};
+
+async function searchPatient(req)
+{
+    const p_id = req.query.search;
+    console.log(p_id);
+  const patientData = await Patient.findOne({p_id : p_id});
+  return patientData;
+}
+module.exports = {patientRegister,patientLogin, searchPatient};

@@ -17,5 +17,12 @@ async function hospitalLogin(req)
     return hospitalLogin;
 
 }
+async function searchHospital(req)
+{
+    const h_id = req.query.search;
+    console.log(h_id);
+  const hospitalData = await Hospital.findOne({h_id : h_id});
+  return hospitalData;
+}
 
-module.exports = {hospitalRegister,hospitalLogin};
+module.exports = {hospitalRegister,hospitalLogin,searchHospital};

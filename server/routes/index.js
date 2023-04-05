@@ -8,15 +8,18 @@ const {
 const {
   patientRegister,
   patientLogin,
+  searchPatient,
 } = require("../controllers/patient.controller");
 const {
   hospitalRegister,
   hospitalLogin,
+  searchHospital,
 } = require("../controllers/hospital.controller");
 
 const {
   doctorRegister,
   doctorLogin,
+  searchDoctor,
 } = require("../controllers/doctor.controller");
 const patientUser = {
   p_id: "P101",
@@ -38,6 +41,39 @@ const hospitalUser = {
   address: "At. Pune",
   password: "123",
 };
+
+router.get("/patient", (req, res, next) => {
+  searchPatient(req)
+    .then((result) => {
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch((e) => {
+      res.status(500).json({ message: "Internet Server Error" });
+    });
+});
+
+router.get("/hospital", (req, res, next) => {
+  searchHospital(req)
+    .then((result) => {
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch((e) => {
+      res.status(500).json({ message: "Internet Server Error" });
+    });
+});
+
+router.get("/doctor", (req, res, next) => {
+  searchDoctor(req)
+    .then((result) => {
+      console.log(result);
+      res.status(200).json(result);
+    })
+    .catch((e) => {
+      res.status(500).json({ message: "Internet Server Error" });
+    });
+});
 
 router.post("/patientLogin", (req, res) => {
   const p_id = req.body.p_id;
@@ -118,7 +154,7 @@ router.post("/doctorLogin", (req, res) => {
     .then((result) => {
       console.log(result);
       if (result === null) {
-        res.status(404).json({ message: "Invalid Hospital" });
+        res.status(404).json({ message: "Invalid Doctor" });
       } else if (result.d_id === d_id && result.password === password) {
         res.status(200).json({ message: "Login Success" });
       } else {

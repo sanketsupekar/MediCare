@@ -17,4 +17,12 @@ async function doctorLogin(req)
     return DoctorLogin;
 
 }
-module.exports = {doctorRegister,doctorLogin};
+async function searchDoctor(req)
+{
+    const d_id = req.query.search;
+    console.log(d_id);
+  const doctorData = await Doctor.findOne({d_id : d_id});
+  return doctorData;
+}
+
+module.exports = {doctorRegister,doctorLogin,searchDoctor};
