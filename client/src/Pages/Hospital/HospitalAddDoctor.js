@@ -11,7 +11,7 @@ export default function HospitalAddDoctor(props) {
   const [error, setError] = useState(false);
   const [errorType, setErrorType] = useState("");
   const URL = "/api/addDoctor/";
-  
+  const H_NAME_URL = "/api/getHospitalName?search=";
   const navigate = useNavigate();
   const [ {HospitalUser} , dispatchUser] = useStateValue();
 
@@ -19,6 +19,7 @@ export default function HospitalAddDoctor(props) {
     _id: null,
     d_id: "",
     h_id:HospitalUser,
+    hospitalName :"",
     name: "",
     speciality: "",
     mail: "",
@@ -59,6 +60,13 @@ export default function HospitalAddDoctor(props) {
     }
   }
 
+  async function fetchingHospitalName() {
+    const respones = await fetch(H_NAME_URL + HospitalUser)
+      .catch((e) => console.error(e));
+    const json = await respones.json();
+    setFormData({ ...formData, hospitalName : json})
+  }
+
   function handleOnSubmit(e) {
     e.preventDefault();
     //console.log(formData);
@@ -70,6 +78,8 @@ export default function HospitalAddDoctor(props) {
       {
         navigate("/home");
       }
+    
+      fetchingHospitalName();
   },[]);
   return (
     <>
@@ -170,7 +180,7 @@ export default function HospitalAddDoctor(props) {
                 }
                 placeholder={"Enter Name"}
                 minLength={1}
-                maxLength={10}
+                maxLength={25}
                 required
               />
             </div>
@@ -190,7 +200,7 @@ export default function HospitalAddDoctor(props) {
                 }
                 placeholder={"Enter Speciality"}
                 minLength={1}
-                maxLength={10}
+                maxLength={15}
                 required
               />
             </div>

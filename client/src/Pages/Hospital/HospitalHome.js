@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useStateValue } from "../../Context/StateProvider";
 import HospitalNavbar from "../Hospital/HospitalNavbar";
 import HospitalHeader from "../Hospital/HospitalHeader"
+import DoctorSlide from '../Doctor/DoctorSlide';
 
 export default function HospitalHome(props) {
     const navigate = useNavigate();
@@ -18,5 +19,6 @@ export default function HospitalHome(props) {
   return <>
     <HospitalNavbar />
     <HospitalHeader />
+    <DoctorSlide />
   </>
 }

@@ -19,10 +19,18 @@ async function doctorLogin(req)
 }
 async function searchDoctor(req)
 {
-    const d_id = req.query.search;
-    console.log(d_id);
-  const doctorData = await Doctor.findOne({d_id : d_id});
-  return doctorData;
+    const searchQuery = req.query.search && req.query.search.toLowerCase();
+    console.log(searchQuery);
+    const doctorData = await Doctor.find({
+      $or: [
+        { d_id: { $regex: searchQuery, $options: "i" } },
+        { name: { $regex: searchQuery, $options: "i" } },
+        { speciality : { $regex: searchQuery, $options: "i" } },
+        { qualification : { $regex: searchQuery, $options: "i" } },
+        { hospitalName : { $regex: searchQuery, $options: "i" } },
+      ],
+    });
+    return doctorData;
 }
 
 module.exports = {doctorRegister,doctorLogin,searchDoctor};

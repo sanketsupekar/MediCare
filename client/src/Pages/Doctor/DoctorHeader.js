@@ -42,7 +42,7 @@ export default function DoctorHeader() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          height:"100vh",
+          height:"90vh",
           backgroundColor: "black",
         }}
       >
@@ -109,11 +109,11 @@ export default function DoctorHeader() {
                         <label className="fw-bold  mx-2"> Address :</label>
                         <label>{doctorUser.address}</label>
                       </div>
-                      <div className="d-flex border-top border-bottom p-2">
+                      {/* <div className="d-flex border-top border-bottom p-2">
                         <label className="fw-bold mx-2"> Experience : </label>
                         <label>{doctorUser.experience}</label>
-                      </div>
-                      <div className="d-flex border-top border-bottom p-2">
+                      </div> */}
+                      {/* <div className="d-flex border-top border-bottom p-2">
                         <label className="fw-bold mx-2"> Charges: </label>
                         <label>{doctorUser.charges}</label>
                       </div>
@@ -121,7 +121,7 @@ export default function DoctorHeader() {
                       <div className="d-flex border-top border-bottom p-2">
                         <label className="fw-bold mx-2"> Qualification: </label>
                         <label>{doctorUser.qualification}</label>
-                      </div>
+                      </div> */}
 
                     </div>
                   </div>

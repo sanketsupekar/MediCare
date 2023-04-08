@@ -20,7 +20,7 @@ export default function PatientHeader() {
       console.error(e)
     );
     const json = respones ? await respones.json() : [];
-    setHospitalData(json);
+    setHospitalData(json[0]);
     console.log(json);
   }
 
@@ -37,7 +37,7 @@ export default function PatientHeader() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          height:"100vh",
+          height:"90vh",
           backgroundColor: "black",
         }}
       >
@@ -56,7 +56,7 @@ export default function PatientHeader() {
           <div class="main-body">
             <div class="d-flex justify-content-center text-dark">
               <div class="m-3 w-25">
-                <div class="card">
+                <div class="card h-100">
                   <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                       <img

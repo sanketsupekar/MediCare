@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import Header from "../components/Header"
-
+import DoctorSlide from "../Pages/Doctor/DoctorSlide";
+import HospitalSlide from "../Pages/Hospital/HospitalSlide";
 import { useNavigate, useParams } from "react-router-dom";
 
 
@@ -28,6 +29,8 @@ export default function Home(props) {
     <>
       <NavBar/>
       <Header/>
+      <HospitalSlide />
+      <DoctorSlide />
     </>
   );
 }

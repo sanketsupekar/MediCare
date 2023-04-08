@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import DoctorCard from "../Pages/Doctor/DoctorCard";
+import HospitalCard from "./HospitalCard";
+import HospitalNavbar from "./HospitalNavbar";
+import { useStateValue } from "../../Context/StateProvider";
 
-export default function Test() {
+
+export default function HospitalExplore() {
   const [inputText, setInputText] = useState("");
   const [userData, setUserData] = useState([]);
   const [isLoading, setLoading] = useState(false);
+  const [ {PatientUser} , dispatchUser] = useStateValue();
 
-  const searchUrl = "api/doctor?search=";
+  const searchUrl = "api/hospital?search=";
   const navigate = useNavigate();
 
   async function fetchingData() {
@@ -37,9 +41,18 @@ export default function Test() {
     fetchingData();
   }, []); // eslint-disable-line
 
+  useEffect(()=>{
+    if(PatientUser === null)
+    {
+      navigate("/home");
+    }
+},[]);
+
   return (
     <>
-      <div className="input-group border w-50 p-5 mt-5 m-auto shadow-sm p-3 mb-5 bg-body rounded">
+
+    <div id="doctorExplore">
+      <div  className="input-group border w-50 p-5 mt-5 m-auto shadow-sm p-3 mb-5 bg-body rounded">
         <form className="w-100" onSubmit={handleOnSearch}>
           <div className=" search-box-wrapper d-flex flex-wrap justify-content-around w-100">
             <input
@@ -83,20 +96,16 @@ export default function Test() {
           <div></div>
         )}
       </div>
-      {userData.length === 0 && !isLoading ? (
-          <div className="d-flex align-items-center text-center m-auto w-25">
-            <p className="w-100">No Data Found..!</p>
-          </div>
-        ) : (
-          
+      {(
       <div className="d-flex flex-wrap justify-content-around ">
         {userData.map((user, key) => {
           return (
-            <DoctorCard key={key} {...user}/>
+            <HospitalCard key={key} {...user}/>
           );
         })}
       </div>
       )}
+      </div>
     </>
   );
 }

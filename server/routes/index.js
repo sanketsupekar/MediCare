@@ -14,6 +14,7 @@ const {
   hospitalRegister,
   hospitalLogin,
   searchHospital,
+  getHospitalName,
 } = require("../controllers/hospital.controller");
 
 const {
@@ -128,6 +129,17 @@ router.post("/hospitalReg", (req, res) => {
   hospitalRegister(req)
     .then((result) => {
       res.status(200).json(result);
+    })
+    .catch((e) => {
+      console.log(e);
+      res.status(500).json({ message: "Internet Server Error" });
+    });
+});
+
+router.get("/getHospitalName", (req, res) => {
+  getHospitalName(req)
+    .then((result) => {
+      res.status(200).json(result.name);
     })
     .catch((e) => {
       console.log(e);
