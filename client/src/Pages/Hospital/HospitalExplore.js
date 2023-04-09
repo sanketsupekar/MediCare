@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import HospitalCard from "./HospitalCard";
-import HospitalNavbar from "./HospitalNavbar";
+
 import { useStateValue } from "../../Context/StateProvider";
+import PatientNavbar from "../Patient/PatientNavbar";
+import DoctorNavbar from "../Doctor/DoctorNavbar";
 
 
-export default function HospitalExplore() {
+export default function HospitalExplore(props) {
   const [inputText, setInputText] = useState("");
   const [userData, setUserData] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const [ {PatientUser} , dispatchUser] = useStateValue();
+  const [ {HospitalUser} , dispatchHospital] = useStateValue();
+  const [ {PatientUser} , dispatchPatient] = useStateValue();
+  const [ {DoctorUser} , dispatchDoctor] = useStateValue();
 
   const searchUrl = "api/hospital?search=";
   const navigate = useNavigate();
@@ -44,14 +48,16 @@ export default function HospitalExplore() {
   useEffect(()=>{
     if(PatientUser === null)
     {
-      navigate("/home");
+      navigate("/loginRequired");
     }
 },[]);
 
   return (
     <>
-
-    <div id="doctorExplore">
+    {
+      (PatientUser !== null ? <PatientNavbar/> : <></>)
+    }
+    <div id="hospitalExplore">
       <div  className="input-group border w-50 p-5 mt-5 m-auto shadow-sm p-3 mb-5 bg-body rounded">
         <form className="w-100" onSubmit={handleOnSearch}>
           <div className=" search-box-wrapper d-flex flex-wrap justify-content-around w-100">

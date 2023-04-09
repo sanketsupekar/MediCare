@@ -25,7 +25,7 @@ export default function DoctorHeader() {
       console.error(e)
     );
     const json = respones ? await respones.json() : [];
-    setDoctorUser(json);
+    setDoctorUser(json[0]);
     console.log(json);
   }
 

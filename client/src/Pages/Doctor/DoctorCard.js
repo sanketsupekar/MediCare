@@ -1,9 +1,13 @@
 import React from "react";
+import DoctorDetails from "./DoctorDetails";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 
 const DoctorCard = (props) => {
+  const navigate = useNavigate();
   function viewMoreClick() {
-    alert("View More Information of Doctor");
+    navigate('/doctorDetails', { state: props });
   }
+
   return (
     <div
       className="item mx-3 mb-5"

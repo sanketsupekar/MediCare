@@ -76,7 +76,7 @@ export default function HospitalAddDoctor(props) {
   useEffect(()=>{
       if(HospitalUser === null)
       {
-        navigate("/home");
+        navigate("/loginRequired");
       }
     
       fetchingHospitalName();

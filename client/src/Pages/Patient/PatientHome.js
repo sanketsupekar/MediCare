@@ -19,8 +19,8 @@ export default function PatientHome(props) {
   return <> 
   <PatientNavbar />
   <PatientHeader/>
-  <HospitalSlide />
-  <DoctorSlide />
+  <HospitalSlide /> 
+  <DoctorSlide /> 
   {/* <h1>Hello, Patient Home {PatientUser}</h1>  */}
   </>
 }

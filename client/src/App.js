@@ -11,10 +11,13 @@ import HospitalRegister from './Pages/Hospital/HospitalRegister';
 import HospitalExplore from './Pages/Hospital/HospitalExplore';
 import DoctorLogin from './Pages/Doctor/DoctorLogin';
 import DoctorHome from './Pages/Doctor/DoctorHome';
+import DoctorDetails from './Pages/Doctor/DoctorDetails';
+import LoginRequired from './Pages/LoginRequired';
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HospitalAddDoctor from './Pages/Hospital/HospitalAddDoctor';
 import DoctorExplore from './Pages/Doctor/DoctorExplore';
+import HospitalDetails from './Pages/Hospital/HospitalDetails';
 
 function App() {
   return (
@@ -30,12 +33,16 @@ function App() {
           <Route path="hospitalLogin" element={<HospitalLogin />} />
           <Route path="hospitalRegister" element={<HospitalRegister />} />
           <Route path="hospitalExplore" element={<HospitalExplore />}></Route>
+          <Route path="hospitalDetails" element={<HospitalDetails />} />
           <Route path="addDoctor" element={<HospitalAddDoctor />} />
 
           <Route path="doctorLogin" element={<DoctorLogin />} />
           <Route path="doctorHome" element={<DoctorHome />}></Route>
           <Route path="doctorExplore" element={<DoctorExplore />}></Route>
+          <Route path="doctorDetails" element={<DoctorDetails />}></Route>
           <Route path="test" element={<Test/>}> </Route>
+          <Route path='loginRequired' element={<LoginRequired/>}></Route>
+
           <Route path="*" element={<Navigate replace to="home" />} />
         </Routes>
       </BrowserRouter>

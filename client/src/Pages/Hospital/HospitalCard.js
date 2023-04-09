@@ -1,9 +1,11 @@
 import React from "react";
 import hospitalImage from "../../image/hospital.jpg";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 export default function HospitalCard (props) {
-  function viewMoreClick()
-  {
-    alert("View More Information of Hospital");
+
+  const navigate = useNavigate();
+  function viewMoreClick() {
+    navigate('/hospitalDetails', { state: props });
   }
 
   return (

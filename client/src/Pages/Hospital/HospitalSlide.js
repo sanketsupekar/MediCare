@@ -46,11 +46,12 @@ export default function HospitalSlide() {
   };
 
   useEffect(()=>{
+    
     fetchingData();
   },[]);
 
   return (
-    <section id="testimonial_hospital" className="testimonials pt-70 pb-70" style={{height:"95vh"}}>
+    <section id="testimonial_hospital" className="testimonials pt-70 pb-70" style={{height:"100vh"}}>
       <div className="container mt-5">
         <div class="two alt-two ">
           <h1>

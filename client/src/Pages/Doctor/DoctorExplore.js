@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import DoctorCard from "./DoctorCard";
 import DoctorNavbar from "./DoctorNavbar";
+import HospitalNavbar from "../Hospital/HospitalNavbar";
+import PatientNavbar from "../Patient/PatientNavbar";
+
 import { useStateValue } from "../../Context/StateProvider";
 
 export default function DoctorExplore() {
   const [inputText, setInputText] = useState("");
   const [userData, setUserData] = useState([]);
   const [isLoading, setLoading] = useState(false);
-  const [{ PatientUser }, dispatchPatient] = useStateValue();
-  const [{ HospitalUser }, dispatchHospital] = useStateValue();
+  const [ {HospitalUser} , dispatchHospital] = useStateValue();
+  const [ {PatientUser} , dispatchPatient] = useStateValue();
+  const [ {DoctorUser} , dispatchDoctor] = useStateValue();
 
   const searchUrl = "api/doctor?search=";
   const navigate = useNavigate();
@@ -44,13 +48,15 @@ export default function DoctorExplore() {
   useEffect(()=>{
     if(PatientUser === null && HospitalUser === null)
     {
-      navigate("/home");
+      navigate("/loginRequired");
     }
 },[]);
 
   return (
     <>
-
+    {
+      (PatientUser !== null ? <PatientNavbar/> : HospitalUser !== null ? <HospitalNavbar /> : <></>)
+    }
     <div id="doctorExplore">
       <div  className="input-group border w-50 p-5 mt-5 m-auto shadow-sm p-3 mb-5 bg-body rounded">
         <form className="w-100" onSubmit={handleOnSearch}>
