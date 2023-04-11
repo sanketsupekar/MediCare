@@ -1,9 +1,13 @@
 const Doctor = require("../model/doctor.module");
 const {connectToDb,disconnectToDb} = require("../controllers/mongoose.controller");
+const {getHospitalName} = require("./hospital.controller");
 
 async function doctorRegister(req)
 {
     const data = req.body;
+    await getHospitalName(data.h_id).then((result)=>{
+      data.hospitalName = result.name;
+    });
     const createDoctor = await Doctor.insertMany([data]);
     return createDoctor;
 }

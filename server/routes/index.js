@@ -22,6 +22,14 @@ const {
   doctorLogin,
   searchDoctor,
 } = require("../controllers/doctor.controller");
+const {
+  incrementId,
+  updateHospitalId,
+  getNextId,
+  updateDoctorId,
+  updatePatientId,
+} = require("../controllers/nextId.controller");
+const { json } = require("body-parser");
 const patientUser = {
   p_id: "P101",
   firstName: "Sanket",
@@ -99,6 +107,7 @@ router.post("/patientReg", (req, res) => {
   patientRegister(req)
     .then((result) => {
       res.status(200).json(result);
+      updatePatientId(incrementId(req.body.p_id));
     })
     .catch((e) => {
       console.log(e);
@@ -129,6 +138,7 @@ router.post("/hospitalReg", (req, res) => {
   hospitalRegister(req)
     .then((result) => {
       res.status(200).json(result);
+      updateHospitalId(incrementId(req.body.h_id));
     })
     .catch((e) => {
       console.log(e);
@@ -136,22 +146,14 @@ router.post("/hospitalReg", (req, res) => {
     });
 });
 
-router.get("/getHospitalName", (req, res) => {
-  getHospitalName(req)
-    .then((result) => {
-      res.status(200).json(result.name);
-    })
-    .catch((e) => {
-      console.log(e);
-      res.status(500).json({ message: "Internet Server Error" });
-    });
-});
+
 
 router.post("/addDoctor", (req, res) => {
   console.log(req.body);
   doctorRegister(req)
     .then((result) => {
       res.status(200).json(result);
+         updateDoctorId(incrementId(req.body.d_id));
     })
     .catch((e) => {
       console.log(e);
@@ -178,6 +180,23 @@ router.post("/doctorLogin", (req, res) => {
     });
 });
 
+router.get("/hospitalId", (req, res) => {
+  getNextId().then((result) => {
+    res.status(200).json(result[0]);
+  });
+});
+
+router.get("/patientId", (req, res) => {
+  getNextId().then((result) => {
+    res.status(200).json(result[0]);
+  });
+});
+
+router.get("/doctorId", (req, res) => {
+  getNextId().then((result) => {
+    res.status(200).json(result[0]);
+  });
+});
 router.get("*", (req, res) => {
   res.send("API");
 });

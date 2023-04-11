@@ -27,9 +27,8 @@ async function searchHospital(req) {
   return hospitalData;
 }
 
-async function getHospitalName(req) {
-  const h_id = req.query.search;
-  console.log(h_id);
+
+async function getHospitalName(h_id) {
   const hospitalData = Hospital.findOne({ h_id: h_id });
   return hospitalData;
 }

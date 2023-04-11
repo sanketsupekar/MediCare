@@ -11,7 +11,7 @@ export default function PatientRegister(props) {
   const [errorType, setErrorType] = useState("");
   const navigate = useNavigate();
   const URL = "/api/patientReg/";
-
+  const URL_P_ID = "/api/hospitalId";
   const [formData, setFormData] = useState({
     _id: null,
     p_id: "",
@@ -52,12 +52,23 @@ export default function PatientRegister(props) {
       console.log("Error : ", e);
     }
   }
+  async function getNextPatientId()
+  {
+     const response = await fetch(URL_P_ID).catch((e)=>{
+      console.log(e);
+     })
+     const data = await response.json();
+     setFormData({ ...formData, p_id: data.patient_id})
+  }
 
   function handleOnSubmit(e) {
     e.preventDefault();
     console.log(formData);
     uploadingData(URL, formData);
   }
+  useEffect(()=>{
+    getNextPatientId();
+  },[]);
 
   return (
     <>
@@ -116,6 +127,7 @@ export default function PatientRegister(props) {
                 minLength={4}
                 maxLength={4}
                 required
+                readonly="readonly"
               />
             </div>
           </div>

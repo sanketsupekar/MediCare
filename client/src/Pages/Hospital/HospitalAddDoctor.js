@@ -11,24 +11,24 @@ export default function HospitalAddDoctor(props) {
   const [error, setError] = useState(false);
   const [errorType, setErrorType] = useState("");
   const URL = "/api/addDoctor/";
-  const H_NAME_URL = "/api/getHospitalName?search=";
+  const URL_D_ID = "/api/doctorId";
   const navigate = useNavigate();
-  const [ {HospitalUser} , dispatchUser] = useStateValue();
+  const [{ HospitalUser }, dispatchUser] = useStateValue();
 
   const [formData, setFormData] = useState({
     _id: null,
     d_id: "",
-    h_id:HospitalUser,
-    hospitalName :"",
+    h_id: HospitalUser,
+    hospitalName: "",
     name: "",
     speciality: "",
     mail: "",
     phoneNo: "",
     address: "",
     password: "",
-    experience:"",
-    charges:"",
-    qualification:""
+    experience: "",
+    charges: "",
+    qualification: "",
   });
 
   async function uploadingData(url, data) {
@@ -50,9 +50,8 @@ export default function HospitalAddDoctor(props) {
           setError(false);
           console.log(json);
         }, 1500);
-      }
-      else if(respones.status == 200){
-       // console.log(json);
+      } else if (respones.status == 200) {
+        // console.log(json);
         navigate("/hospitalHome");
       }
     } catch (e) {
@@ -60,30 +59,35 @@ export default function HospitalAddDoctor(props) {
     }
   }
 
-  async function fetchingHospitalName() {
-    const respones = await fetch(H_NAME_URL + HospitalUser)
-      .catch((e) => console.error(e));
-    const json = await respones.json();
-    setFormData({ ...formData, hospitalName : json})
+  // async function fetchingHospitalName() {
+  //   const respones = await fetch(H_NAME_URL + HospitalUser).catch((e) =>
+  //     console.error(e)
+  //   );
+  //   const json = await respones.json();
+  //   setFormData({ ...formData, hospitalName: json });
+  // }
+  async function getNextDoctorId() {
+    const response = await fetch(URL_D_ID).catch((e) => {
+      console.log(e);
+    });
+    const data = await response.json();
+    setFormData({ ...formData, d_id: data.doctor_id });
   }
-
   function handleOnSubmit(e) {
     e.preventDefault();
-    //console.log(formData);
+    console.log(formData);
     uploadingData(URL, formData);
   }
 
-  useEffect(()=>{
-      if(HospitalUser === null)
-      {
-        navigate("/loginRequired");
-      }
-    
-      fetchingHospitalName();
-  },[]);
+  useEffect(() => {
+    if (HospitalUser === null) {
+      navigate("/loginRequired");
+    }
+    getNextDoctorId();
+  }, []);
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <div className="mt-5">.</div>
       {error ? (
         <div
@@ -137,6 +141,7 @@ export default function HospitalAddDoctor(props) {
                 minLength={4}
                 maxLength={4}
                 required
+                readonly="readonly"
               />
             </div>
           </div>
@@ -162,8 +167,6 @@ export default function HospitalAddDoctor(props) {
               />
             </div>
           </div>
-
-
 
           <div className="d-flex flex-row mb-4">
             <div className="form-outline flex-fill mb-0">
@@ -271,7 +274,7 @@ export default function HospitalAddDoctor(props) {
           <div className="d-flex flex-row mb-4">
             <div className="form-outline flex-fill mb-0">
               <label className="form-label" htmlFor="speciality">
-              Qualification
+                Qualification
               </label>
               <input
                 type="text"
@@ -287,7 +290,8 @@ export default function HospitalAddDoctor(props) {
                 required
               />
             </div>
-          </div><div className="d-flex flex-row mb-4">
+          </div>
+          <div className="d-flex flex-row mb-4">
             <div className="form-outline flex-fill mb-0">
               <label className="form-label" htmlFor="speciality">
                 Experience
@@ -306,7 +310,8 @@ export default function HospitalAddDoctor(props) {
                 required
               />
             </div>
-          </div><div className="d-flex flex-row mb-4">
+          </div>
+          <div className="d-flex flex-row mb-4">
             <div className="form-outline flex-fill mb-0">
               <label className="form-label" htmlFor="speciality">
                 Charges
