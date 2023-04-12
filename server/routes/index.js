@@ -9,6 +9,7 @@ const {
   patientRegister,
   patientLogin,
   searchPatient,
+  updatePatient,
 } = require("../controllers/patient.controller");
 const {
   hospitalRegister,
@@ -113,6 +114,15 @@ router.post("/patientReg", (req, res) => {
       console.log(e);
       res.status(500).json({ message: "Internet Server Error" });
     });
+});
+router.post("/patientUpdate", (req, res) => {
+  updatePatient(req).then((result) => {
+    res.status(200).json(result);
+  })
+  .catch((e) => {
+    console.log(e);
+    res.status(500).json({ message: "Internet Server Error" });
+  });
 });
 
 router.post("/hospitalLogin", (req, res) => {

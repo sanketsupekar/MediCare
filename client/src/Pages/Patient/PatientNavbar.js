@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/js/src/collapse.js";
 import logo from "../../image/logo.png";
 import { Link } from "react-router-dom";
-import { useStateValue } from "../../Context/StateProvider";
-import { actionTypes } from "../../Context/reducer";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import '../../App';
 
 export default function PatientNavbar() {
+  const navigate = useNavigate();
   function logoutUser()
   {
       window.localStorage.clear();
       window.location.reload();
+  }
+  function userProfile()
+  {
+      navigate("/patientDetails");
   }
   return (
     <>
@@ -36,7 +39,7 @@ export default function PatientNavbar() {
             <a className="navbar-brand">
               <img src={logo} alt="" width="30" height="24"></img>
             </a>
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand">
               Medicare
             </a>
           </div>
@@ -53,6 +56,13 @@ export default function PatientNavbar() {
                     HOME
                   </a>
                 </Link>
+              </li>
+              <li className="nav-item mx-2">
+               
+                  <a className="nav-link active" aria-current="page" onClick={userProfile}>
+                    PROFILE
+                  </a>
+               
               </li>
               <li className="nav-item mx-2">
                 <Link className="text-decoration-none">

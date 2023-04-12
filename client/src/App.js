@@ -3,6 +3,7 @@ import './App.css';
 import PatientRegister from './Pages/Patient/PatientRegister';
 import PatientLogin from './Pages/Patient/PatientLogin';
 import PatientHome from './Pages/Patient/PatientHome';
+import PatientDetails from './Pages/Patient/PatientDetails';
 import Test from './components/Test';
 import Home from './components/Home';
 import HospitalHome from './Pages/Hospital/HospitalHome';
@@ -28,6 +29,7 @@ function App() {
           <Route path="patientHome" element={<PatientHome />}></Route>
           <Route path="patientLogin" element={<PatientLogin />} />
           <Route path="patientRegister" element={<PatientRegister />} />
+          <Route path="patientDetails" element={<PatientDetails />} />
 
           <Route path="hospitalHome" element={<HospitalHome />}></Route>
           <Route path="hospitalLogin" element={<HospitalLogin />} />
