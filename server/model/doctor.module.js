@@ -47,6 +47,9 @@ var DoctorProfileSchema = new mongoose.Schema({
     qualification:{
         type:String,
         required:true
+    },
+    profileUrl:{
+        type:String
     }
 })
 const doctorReg = mongoose.model("doctorProfile",DoctorProfileSchema);

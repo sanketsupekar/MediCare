@@ -3,6 +3,7 @@ import { useStateValue } from "../../Context/StateProvider";
 import React, { useEffect, useState } from "react";
 
 export default function PatientHeader(patientUser) {
+
   return (
     <>
       <div
@@ -37,7 +38,11 @@ export default function PatientHeader(patientUser) {
                   <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  
+                        // src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                        
+                        src={patientUser.profileUrl === undefined ? "https://bootdey.com/img/Content/avatar/avatar7.png" : patientUser.profileUrl}
+
                         alt="Admin"
                         class="rounded-circle"
                         width="150"

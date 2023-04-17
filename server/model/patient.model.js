@@ -27,6 +27,9 @@ var patientProfileSchema = new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    profileUrl:{
+        type:String
     }
 })
 const patientReg = mongoose.model("patientProfile",patientProfileSchema);

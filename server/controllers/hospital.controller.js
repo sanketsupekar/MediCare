@@ -15,7 +15,7 @@ async function hospitalLogin(req) {
 }
 async function searchHospital(req) {
   const searchQuery = req.query.search && req.query.search.toLowerCase();
-  console.log(searchQuery);
+ // console.log(searchQuery);
   const hospitalData = await Hospital.find({
     $or: [
       { h_id: { $regex: searchQuery, $options: "i" } },
@@ -27,10 +27,22 @@ async function searchHospital(req) {
   return hospitalData;
 }
 
+async function hospitalProfileUpdate(id,url)
+{
+    const profileUpdate = Hospital.updateOne({h_id : id},{$set: {profileUrl : url}}).catch(e => console.log("errrr",e));
+    return profileUpdate;
+}
 
 async function getHospitalName(h_id) {
   const hospitalData = Hospital.findOne({ h_id: h_id });
   return hospitalData;
+}
+
+async function updateHospital(req)
+{
+    const data = req.body;
+    const hospitalUpdate = Hospital.updateOne({h_id : data.h_id},{$set: data}).catch(e => console.log("errrr",e));
+    return hospitalUpdate;
 }
 
 module.exports = {
@@ -38,4 +50,6 @@ module.exports = {
   hospitalLogin,
   searchHospital,
   getHospitalName,
+  updateHospital,
+  hospitalProfileUpdate,
 };

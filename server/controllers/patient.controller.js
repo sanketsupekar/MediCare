@@ -8,6 +8,11 @@ async function patientRegister(req)
     const createPatient = await Patient.insertMany([data]);
     return createPatient;
 }
+async function patientProfileUpdate(id,url)
+{
+    const profileUpdate = Patient.updateOne({p_id : id},{$set: {profileUrl : url}}).catch(e => console.log("errrr",e));
+    return profileUpdate;
+}
 async function updatePatient(req)
 {
     const data = req.body;
@@ -27,8 +32,8 @@ async function patientLogin(req)
 async function searchPatient(req)
 {
     const p_id = req.query.search;
-    console.log(p_id);
+    // console.log(p_id);
   const patientData = await Patient.findOne({p_id : p_id});
   return patientData;
 }
-module.exports = {patientRegister,patientLogin, searchPatient,updatePatient};
+module.exports = {patientRegister,patientLogin, searchPatient,updatePatient,patientProfileUpdate};

@@ -11,7 +11,7 @@ export default function ProfileInfo(props) {
                   <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                        src={props.profileUrl === undefined ? "https://bootdey.com/img/Content/avatar/avatar7.png" : props.profileUrl}
                         alt="Admin"
                         class="rounded-circle"
                         width="150"

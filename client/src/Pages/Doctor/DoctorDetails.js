@@ -3,53 +3,72 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import PageNotFound from "../PageNotFound";
 import LoginRequired from "../LoginRequired";
 import { useStateValue } from "../../Context/StateProvider";
+import ProfileInfo from "./components/ProfileInfo";
+import ProfileUpdate from "./components/ProfileUpdate";
 
 export default function DoctorDetails() {
   const { state } = useLocation();
+  const [isEdit, setEdit] = useState(false);
   const [{ HospitalUser }, dispatchHospital] = useStateValue();
   const [{ PatientUser }, dispatchPatient] = useStateValue();
+  const [{ DoctorUser }, dispatchDoctor] = useStateValue();
+  const searchUrl = "api/doctor?search=";
 
-  const user = {
-    d_id: "D101",
-    h_id: "H101",
-    hospitalName: "Sairam",
-    name: "Sanket Supekar",
-    speciality: "Brain",
-    mail: "sanket@gmail.com",
-    phoneNo: 9130420859,
-    address: "Pune",
-    password: "sans",
-    experience: "50",
-    charges: 5000,
-    qualification: "B.Tech",
-  };
+  const [doctorData, setDoctorData] = useState({
+    _id: null,
+    d_id: "",
+    h_id: "",
+    hospitalName: "",
+    name: "",
+    speciality: "",
+    mail: "",
+    phoneNo: "",
+    address: "",
+    password: "",
+    experience: "",
+    charges: "",
+    qualification: "",
+    profileUrl:"",
+  });
+
+  async function fetchingData() {
+    const respones = await fetch(searchUrl + state.d_id).catch((e) =>
+      console.error(e)
+    );
+    const json = respones ? await respones.json() : [];
+    setDoctorData(json[0]);
+
+  }
 
   function bookAppointment() {
     alert("Book Appointment");
   }
   function editDoctor() {
-    alert("Doctor Edit");
+    setEdit(!isEdit);
   }
+
+  useEffect(() => {
+    fetchingData();
+  });
+
   return (
     <>
-      {state === null ? (
-        <PageNotFound />
-      ) : PatientUser !== null || HospitalUser !== null ? (
-        <section style={{ backgroundColor: "#eee", height: "100vh" }}>
+      {PatientUser !== null || HospitalUser !== null || DoctorUser !== null ? (
+        <section style={{ backgroundColor: "#eee" }}>
           <div className="container py-5">
             <div className="d-flex flex-column align-items-center justify-content-center w-100">
               <div className="w-100">
                 <div className="card mb-4">
                   <div className="card-body text-center">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                      src={doctorData.profileUrl === undefined ? "https://bootdey.com/img/Content/avatar/avatar7.png" : doctorData.profileUrl}
                       alt="avatar"
                       className="rounded-circle img-fluid"
                       style={{ width: "150px" }}
                     />
-                    <h5 className="my-2">Dr. {state.name}</h5>
+                    <h5 className="my-2">Dr. {doctorData.name}</h5>
                     <p className="text-muted mb-4">
-                      {state.speciality} Specialist
+                      {doctorData.speciality} Specialist
                     </p>
 
                     {PatientUser !== null ? (
@@ -66,129 +85,20 @@ export default function DoctorDetails() {
                       <></>
                     )}
 
-                    {HospitalUser !== null ? (
-                      <div className="d-flex justify-content-center mb-2">
-                        <button
-                          type="button"
-                          className="btn btn-dark"
-                          onClick={editDoctor}
-                        >
-                          Edit Doctor
-                        </button>
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-
-                  </div>
-                </div>
-              </div>
-              <div className="d-flex justify-content-around w-100">
-                <div className="w-100">
-                  <div className="card mb-4">
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Doctor ID</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">{state.d_id}</p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Doctor Name</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">{state.name}</p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Speciality</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">{state.speciality}</p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Mail</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">{state.mail}</p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Phone No.</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">{state.phoneNo}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-100">
-                  <div className="card mb-4">
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Hospital Name</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">
-                            {state.hospitalName}
-                          </p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Experince</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">{state.experience}</p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Charges</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">{state.charges}</p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Qualification</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">
-                            {state.qualification}
-                          </p>
-                        </div>
-                      </div>
-                      <hr />
-                      <div className="row">
-                        <div className="col-sm-3">
-                          <p className="mb-0">Address</p>
-                        </div>
-                        <div className="col-sm-9">
-                          <p className="text-muted mb-0">{state.address}</p>
-                        </div>
-                      </div>
+                    <div className="d-flex justify-content-center mb-2">
+                      <button
+                        type="button"
+                        className="btn btn-dark"
+                        onClick={editDoctor}
+                      >
+                        Edit Doctor
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
+              <ProfileInfo {...doctorData} />
+              {isEdit ? <ProfileUpdate {...doctorData} /> : <></>}
             </div>
           </div>
         </section>

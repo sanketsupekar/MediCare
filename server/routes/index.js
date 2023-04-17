@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const PatientProfile = require("../model/patient.model");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+
 const {
   connectToDb,
   disconnectToDb,
@@ -10,18 +13,23 @@ const {
   patientLogin,
   searchPatient,
   updatePatient,
+  patientProfileUpdate,
 } = require("../controllers/patient.controller");
 const {
   hospitalRegister,
   hospitalLogin,
   searchHospital,
   getHospitalName,
+  updateHospital,
+  hospitalProfileUpdate,
 } = require("../controllers/hospital.controller");
 
 const {
   doctorRegister,
   doctorLogin,
   searchDoctor,
+  updateDoctor,
+  doctorProfileUpdate,
 } = require("../controllers/doctor.controller");
 const {
   incrementId,
@@ -31,31 +39,27 @@ const {
   updatePatientId,
 } = require("../controllers/nextId.controller");
 const { json } = require("body-parser");
-const patientUser = {
-  p_id: "P101",
-  firstName: "Sanket",
-  lastName: "Supekar",
-  age: "20",
-  phoneNo: "9130420859",
-  address: "At Shirdi",
-  password: "saisanket",
-};
 
-const hospitalUser = {
-  _id: null,
-  h_id: "H101",
-  name: "SaiRam",
-  speciality: "Cancer",
-  mail: "sairam123@gmail.com",
-  phoneNo: "9999224456",
-  address: "At. Pune",
-  password: "123",
-};
+// Configuration Cloudinary
+cloudinary.config({
+  cloud_name: "didso0xgl",
+  api_key: "536755261867198",
+  api_secret: "JVvF5sfMcy2VYO1BE8eIFXVaEVo",
+});
+const upload = multer({ dest: "uploads/" });
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+      cb(null, 'images');
+  },
+  filename: function(req, file, cb) {   
+      cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
 
 router.get("/patient", (req, res, next) => {
   searchPatient(req)
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       res.status(200).json(result);
     })
     .catch((e) => {
@@ -66,7 +70,7 @@ router.get("/patient", (req, res, next) => {
 router.get("/hospital", (req, res, next) => {
   searchHospital(req)
     .then((result) => {
-      console.log(result);
+      // console.log(result);
       res.status(200).json(result);
     })
     .catch((e) => {
@@ -77,7 +81,7 @@ router.get("/hospital", (req, res, next) => {
 router.get("/doctor", (req, res, next) => {
   searchDoctor(req)
     .then((result) => {
-      console.log(result);
+    //  console.log(result);
       res.status(200).json(result);
     })
     .catch((e) => {
@@ -115,6 +119,7 @@ router.post("/patientReg", (req, res) => {
       res.status(500).json({ message: "Internet Server Error" });
     });
 });
+
 router.post("/patientUpdate", (req, res) => {
   updatePatient(req).then((result) => {
     res.status(200).json(result);
@@ -123,6 +128,25 @@ router.post("/patientUpdate", (req, res) => {
     console.log(e);
     res.status(500).json({ message: "Internet Server Error" });
   });
+});
+
+router.post("/patientProfileUpdate", upload.single("image"), async (req, res) => {
+  console.log(req.body);
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    patientProfileUpdate(req.body.p_id, result.secure_url)
+      .then((data) => {
+        res.send(result.secure_url);
+        console.log(result.secure_url);
+      })
+      .catch((e) => {
+        console.error(error);
+        res.status(500).send(error.message);
+      });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error.message);
+  }
 });
 
 router.post("/hospitalLogin", (req, res) => {
@@ -143,6 +167,7 @@ router.post("/hospitalLogin", (req, res) => {
       console.log(err);
     });
 });
+
 router.post("/hospitalReg", (req, res) => {
   console.log(req.body);
   hospitalRegister(req)
@@ -156,6 +181,35 @@ router.post("/hospitalReg", (req, res) => {
     });
 });
 
+router.post("/hospitalUpdate", (req, res) => {
+  updateHospital(req).then((result) => {
+    res.status(200).json(result);
+  })
+  .catch((e) => {
+    console.log(e);
+    res.status(500).json({ message: "Internet Server Error" });
+  });
+});
+
+router.post("/hospitalProfileUpdate", upload.single("image"), async (req, res) => {
+  console.log(req.body);
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    hospitalProfileUpdate(req.body.h_id, result.secure_url)
+      .then((data) => {
+        res.send(result.secure_url);
+        console.log(data);
+       // console.log(result.secure_url);
+      })
+      .catch((e) => {
+        console.error(error);
+        res.status(500).send(error.message);
+      });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error.message);
+  }
+});
 
 
 router.post("/addDoctor", (req, res) => {
@@ -169,6 +223,36 @@ router.post("/addDoctor", (req, res) => {
       console.log(e);
       res.status(500).json({ message: "Internet Server Error" });
     });
+});
+
+router.post("/doctorUpdate", (req, res) => {
+  updateDoctor(req).then((result) => {
+    res.status(200).json(result);
+  })
+  .catch((e) => {
+    console.log(e);
+    res.status(500).json({ message: "Internet Server Error" });
+  });
+});
+
+router.post("/doctorProfileUpdate", upload.single("image"), async (req, res) => {
+  console.log(req.body);
+  try {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    doctorProfileUpdate(req.body.d_id, result.secure_url)
+      .then((data) => {
+        res.send(result.secure_url);
+        console.log(data);
+       // console.log(result.secure_url);
+      })
+      .catch((e) => {
+        console.error(error);
+        res.status(500).send(error.message);
+      });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error.message);
+  }
 });
 
 router.post("/doctorLogin", (req, res) => {
@@ -207,6 +291,7 @@ router.get("/doctorId", (req, res) => {
     res.status(200).json(result[0]);
   });
 });
+
 router.get("*", (req, res) => {
   res.send("API");
 });

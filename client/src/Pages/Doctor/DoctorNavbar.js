@@ -5,13 +5,20 @@ import { Link } from "react-router-dom";
 import { useStateValue } from "../../Context/StateProvider";
 import { actionTypes } from "../../Context/reducer";
 import { useNavigate, useParams } from "react-router-dom";
-import '../../App';
+import "../../App";
 
 export default function DoctorNavbar() {
-  function logoutUser()
+  const [{ DoctorUser }, dispatchUser] = useStateValue();
+
+  const navigate = useNavigate();
+  function logoutUser() {
+    window.localStorage.clear();
+    window.location.reload();
+  }
+  function userProfile()
   {
-      window.localStorage.clear();
-      window.location.reload();
+    //console.log(DoctorUser);
+    navigate('/doctorDetails', { state: {d_id : DoctorUser} });
   }
   return (
     <>
@@ -45,7 +52,6 @@ export default function DoctorNavbar() {
             id="navbarTogglerDemo03"
           >
             <ul className="navbar-nav w-100 d-flex justify-content-end me-auto mb-2 mb-lg-0">
-  
               <li className="nav-item mx-2">
                 <Link to="/home" className="text-decoration-none">
                   <a className="nav-link active" aria-current="page">
@@ -54,8 +60,21 @@ export default function DoctorNavbar() {
                 </Link>
               </li>
               <li className="nav-item mx-2">
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  onClick={userProfile}
+                >
+                  PROFILE
+                </a>
+              </li>
+              <li className="nav-item mx-2">
                 <Link className="text-decoration-none">
-                  <a className="nav-link active" aria-current="page" onClick={logoutUser}>
+                  <a
+                    className="nav-link active"
+                    aria-current="page"
+                    onClick={logoutUser}
+                  >
                     LOGOUT
                   </a>
                 </Link>

@@ -20,6 +20,7 @@ export default function PatientDetails() {
     phoneNo: "",
     address: "",
     password: "",
+    profileUrl:"",
   });
 
   async function fetchingData() {
@@ -28,7 +29,7 @@ export default function PatientDetails() {
     );
     const json = respones ? await respones.json() : [];
     setPatientData(json);
-    console.log(json);
+    // console.log(json);
   }
 
   function editPatient() {

@@ -6,16 +6,21 @@ import { useStateValue } from "../../Context/StateProvider";
 import { actionTypes } from "../../Context/reducer";
 import { useNavigate, useParams } from "react-router-dom";
 
-import '../../App';
+import "../../App";
 
 export default function PatientNavbar() {
-  function logoutUser()
-  {
-      window.localStorage.clear();
-      window.location.reload();
+  const [{ HospitalUser }, dispatchUser] = useStateValue();
+  const navigate = useNavigate();
+
+  function logoutUser() {
+    window.localStorage.clear();
+    window.location.reload();
   }
-  function addDoctor()
-  {
+  function userProfile() {
+    navigate("/hospitalDetails", { state: { h_id: HospitalUser } });
+  }
+
+  function addDoctor() {
     console.log("Doctor Added");
   }
   return (
@@ -50,7 +55,6 @@ export default function PatientNavbar() {
             id="navbarTogglerDemo03"
           >
             <ul className="navbar-nav w-100 d-flex justify-content-end me-auto mb-2 mb-lg-0">
-  
               <li className="nav-item mx-2">
                 <Link to="/home" className="text-decoration-none">
                   <a className="nav-link active" aria-current="page">
@@ -58,10 +62,18 @@ export default function PatientNavbar() {
                   </a>
                 </Link>
               </li>
-
+              <li className="nav-item mx-2">
+                <a
+                  className="nav-link active"
+                  aria-current="page"
+                  onClick={userProfile}
+                >
+                  PROFILE
+                </a>
+              </li>
               <li className="nav-item mx-2">
                 <Link to="/addDoctor" className="text-decoration-none">
-                  <a className="nav-link active" aria-current="page" >
+                  <a className="nav-link active" aria-current="page">
                     ADD-DOCTOR
                   </a>
                 </Link>
@@ -69,7 +81,11 @@ export default function PatientNavbar() {
 
               <li className="nav-item mx-2">
                 <Link className="text-decoration-none">
-                  <a className="nav-link active" aria-current="page" onClick={logoutUser}>
+                  <a
+                    className="nav-link active"
+                    aria-current="page"
+                    onClick={logoutUser}
+                  >
                     LOGOUT
                   </a>
                 </Link>

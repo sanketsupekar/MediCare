@@ -18,7 +18,7 @@ export default function HospitalHome(props) {
   },[]);
   return <>
     <HospitalNavbar />
-    <HospitalHeader />
-    <DoctorSlide />
+    {/* <HospitalHeader />
+    <DoctorSlide /> */}
   </>
 }
