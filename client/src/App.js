@@ -19,6 +19,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HospitalAddDoctor from './Pages/Hospital/HospitalAddDoctor';
 import DoctorExplore from './Pages/Doctor/DoctorExplore';
 import HospitalDetails from './Pages/Hospital/HospitalDetails';
+import GetAppointment from './Pages/Patient/GetAppointment';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="patientLogin" element={<PatientLogin />} />
           <Route path="patientRegister" element={<PatientRegister />} />
           <Route path="patientDetails" element={<PatientDetails />} />
+          <Route path="getAppointment" element={<GetAppointment />} />
 
           <Route path="hospitalHome" element={<HospitalHome />}></Route>
           <Route path="hospitalLogin" element={<HospitalLogin />} />

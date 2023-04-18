@@ -5,7 +5,7 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 const DoctorCard = (props) => {
   const navigate = useNavigate();
   function viewMoreClick() {
-    navigate('/doctorDetails', { state: props });
+    navigate("/doctorDetails", { state: props });
   }
 
   return (
@@ -23,7 +23,11 @@ const DoctorCard = (props) => {
 
               <div className="card-image">
                 <img
-                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  src={
+                    props.profileUrl === undefined
+                      ? "https://bootdey.com/img/Content/avatar/avatar7.png"
+                      : props.profileUrl
+                  }
                   alt=""
                   className="card-img"
                 />

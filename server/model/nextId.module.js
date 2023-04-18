@@ -11,6 +11,9 @@ var next_id_gen = new mongoose.Schema({
     },
     patient_id:{
         type:String,
+    },
+    appointment_id:{
+        type:String,
     }
 })
    

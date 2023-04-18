@@ -6,7 +6,7 @@ import { useStateValue } from "../../Context/StateProvider";
 import hospitalImage from "../../image/hospital.jpg";
 import ProfileInfo from "./components/ProfileInfo";
 import ProfileUpdate from "./components/ProfileUpdate";
-
+import BackNavbar from "../BackNavbar";
 export default function HospitalDetails() {
   const { state } = useLocation();
   const [isEdit, setEdit] = useState(false);
@@ -49,7 +49,9 @@ export default function HospitalDetails() {
       {state === null ? (
         <PageNotFound />
       ) : PatientUser !== null || HospitalUser !== null ? (
-        <section style={{ backgroundColor: "#eee" }}>
+        <>
+        <BackNavbar />
+        <section style={{ backgroundColor: "#eee" }} className="mt-5">
           <div className="container py-5">
             <div className="d-flex flex-column align-items-center justify-content-center w-100">
               <div className="w-100">
@@ -64,7 +66,7 @@ export default function HospitalDetails() {
                         }
                         alt="Admin"
                         class="rounded-circle"
-                        style={{width : "35rem"}}
+                        style={{ width: "35rem" }}
                       ></img>
                     </div>
                     <div className=" w-50">
@@ -106,22 +108,26 @@ export default function HospitalDetails() {
                       <></>
                     )} */}
                   </div>
-                  <div className="d-flex justify-content-center mb-5">
-                    <button
-                      type="button"
-                      className="btn btn-dark"
-                      onClick={editHospital}
-                    >
-                      Edit Hospital
-                    </button>
-                  </div>
+                  {HospitalUser !== null ? (
+                    <div className="d-flex justify-content-center mb-5">
+                      <button
+                        type="button"
+                        className="btn btn-dark"
+                        onClick={editHospital}
+                      >
+                        Edit Hospital
+                      </button>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
               <ProfileInfo {...hospitalData} />
               {isEdit ? <ProfileUpdate {...hospitalData} /> : <></>}
             </div>
           </div>
-        </section>
+        </section> </>
       ) : (
         <LoginRequired></LoginRequired>
       )}

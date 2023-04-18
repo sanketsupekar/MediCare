@@ -21,8 +21,15 @@ function incrementId(id) {
         //Nothing...
     })
   }
+
+  async function updateAppointmentId(newId){
+    await next_id_gen.updateOne({id : "next"},{appointment_id : newId}).then((result)=>{
+        //Nothing...
+    })
+  }
+
   async function getNextId() {
     return await next_id_gen.find();
   }
 
-  module.exports = {incrementId,updateHospitalId,updateDoctorId,updatePatientId,getNextId};
+  module.exports = {incrementId,updateHospitalId,updateDoctorId,updatePatientId,updateAppointmentId,getNextId};

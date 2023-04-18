@@ -30,7 +30,20 @@ var patientProfileSchema = new mongoose.Schema({
     },
     profileUrl:{
         type:String
-    }
+    },
+    gender:{
+        type:String
+    },
+    height:{
+        type : Number
+    },
+    weight:{
+        type : Number
+    },
+    bloodGroup : {
+        type:String
+    },
+
 })
 const patientReg = mongoose.model("patientProfile",patientProfileSchema);
 module.exports = patientReg;

@@ -5,6 +5,7 @@ import LoginRequired from "../LoginRequired";
 import { useStateValue } from "../../Context/StateProvider";
 import ProfileInfo from "./components/ProfileInfo";
 import ProfileUpdate from "./components/ProfileUpdate";
+import BackNavbar from "../BackNavbar";
 
 export default function DoctorDetails() {
   const { state } = useLocation();
@@ -12,6 +13,7 @@ export default function DoctorDetails() {
   const [{ HospitalUser }, dispatchHospital] = useStateValue();
   const [{ PatientUser }, dispatchPatient] = useStateValue();
   const [{ DoctorUser }, dispatchDoctor] = useStateValue();
+  const navigate = useNavigate();
   const searchUrl = "api/doctor?search=";
 
   const [doctorData, setDoctorData] = useState({
@@ -28,7 +30,7 @@ export default function DoctorDetails() {
     experience: "",
     charges: "",
     qualification: "",
-    profileUrl:"",
+    profileUrl: "",
   });
 
   async function fetchingData() {
@@ -37,11 +39,10 @@ export default function DoctorDetails() {
     );
     const json = respones ? await respones.json() : [];
     setDoctorData(json[0]);
-
   }
 
   function bookAppointment() {
-    alert("Book Appointment");
+    navigate("/getAppointment",{state : doctorData});
   }
   function editDoctor() {
     setEdit(!isEdit);
@@ -54,14 +55,20 @@ export default function DoctorDetails() {
   return (
     <>
       {PatientUser !== null || HospitalUser !== null || DoctorUser !== null ? (
-        <section style={{ backgroundColor: "#eee" }}>
+        <>
+        <BackNavbar />
+        <section style={{ backgroundColor: "#eee" }} className="mt-5">
           <div className="container py-5">
             <div className="d-flex flex-column align-items-center justify-content-center w-100">
               <div className="w-100">
                 <div className="card mb-4">
                   <div className="card-body text-center">
                     <img
-                      src={doctorData.profileUrl === undefined ? "https://bootdey.com/img/Content/avatar/avatar7.png" : doctorData.profileUrl}
+                      src={
+                        doctorData.profileUrl === undefined
+                          ? "https://bootdey.com/img/Content/avatar/avatar7.png"
+                          : doctorData.profileUrl
+                      }
                       alt="avatar"
                       className="rounded-circle img-fluid"
                       style={{ width: "150px" }}
@@ -85,15 +92,19 @@ export default function DoctorDetails() {
                       <></>
                     )}
 
-                    <div className="d-flex justify-content-center mb-2">
-                      <button
-                        type="button"
-                        className="btn btn-dark"
-                        onClick={editDoctor}
-                      >
-                        Edit Doctor
-                      </button>
-                    </div>
+                    {DoctorUser !== null ? (
+                      <div className="d-flex justify-content-center mb-5">
+                        <button
+                          type="button"
+                          className="btn btn-dark"
+                          onClick={editDoctor}
+                        >
+                          Edit Profile
+                        </button>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </div>
               </div>
@@ -101,7 +112,7 @@ export default function DoctorDetails() {
               {isEdit ? <ProfileUpdate {...doctorData} /> : <></>}
             </div>
           </div>
-        </section>
+        </section> </>
       ) : (
         <LoginRequired></LoginRequired>
       )}

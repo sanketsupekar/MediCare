@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import headerbg from "../../image/header_img.jpg";
 import { useStateValue } from "../../Context/StateProvider";
-
+import hospitalImage from "../../image/hospital.jpg"
 export default function PatientHeader() {
   const [{ HospitalUser }, dispatchUser] = useStateValue();
   const searchUrl = "api/hospital?search=";
@@ -60,10 +60,15 @@ export default function PatientHeader() {
                   <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                        src={
+                          hospitalUser.profileUrl === undefined
+                            ? hospitalImage
+                            : hospitalUser.profileUrl
+                        }
                         alt="Admin"
                         class="rounded-circle"
                         width="150"
+                        height="150"
                       ></img>
                       <div class="mt-3">
                         <h4>{hospitalUser.name}</h4>

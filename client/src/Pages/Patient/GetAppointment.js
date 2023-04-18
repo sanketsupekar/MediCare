@@ -1,55 +1,133 @@
 import React, { useEffect, useState } from "react";
-import BackNavbar from "./BackNavbar";
+import BackNavbar from "../BackNavbar";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import { useStateValue } from "../../Context/StateProvider";
 import addDays from "date-fns/addDays";
 import "react-datepicker/dist/react-datepicker.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Test() {
+export default function GetAppointment() {
+  const URL = "/api/getAppointment";
+  const searchUrl = "api/patient?search=";
+
+  const { state } = useLocation();
   const [date, setDate] = useState();
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorType, setErrorType] = useState("");
+  const [{ PatientUser }, dispatchUser] = useStateValue();
+
   const [appointment, setAppointment] = useState({
-    p_id: "P101",
-    firstName:"Sanket",
-    lastName:"Supekar",
-    gender:"Male",
-    phoneNo:"9130420859",
-    d_id: "D101",
-    name:"Dr. Ramdev Baba",
-    h_id: "H101",
-    hospitalName:"Patanjali Hospital",
+    p_id: "",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    phoneNo: "",
+    d_id: state.d_id,
+    name: state.name,
+    h_id: state.h_id,
+    hospitalName: state.hospitalName,
     appoDateTime: new Date(),
     createDate: new Date(),
     appoStatus: "Pending",
-    appoMessage :"",
+    appoMessage: "",
   });
+
+  async function fetchingPatientData() {
+    const respones = await fetch(searchUrl + PatientUser).catch((e) =>
+      console.error(e)
+    );
+    const patientData = respones ? await respones.json() : [];
+    setAppointment({
+      ...appointment,
+      p_id: patientData.p_id,
+      firstName: patientData.firstName,
+      lastName: patientData.lastName,
+      gender: patientData.gender,
+      phoneNo: patientData.phoneNo,
+    });
+    // console.log(json);
+  }
+
+  async function uploadingData(url, data) {
+    try {
+      setLoading(true);
+      const respones = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).catch((e) => console.log("Error : ", e));
+      const json = await respones.json();
+      setLoading(false);
+      if (respones.status !== 200) {
+        setErrorType(json.message);
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+          console.log(json);
+        }, 1500);
+      } else if (respones.status == 200) {
+        console.log(json);
+        window.location.reload(false);
+        
+      }
+    } catch (e) {
+      console.log("Error : ", e);
+    }
+  }
 
   function handleOnSubmit(e) {
     e.preventDefault();
     console.log(appointment);
+    uploadingData(URL, appointment);
   }
-
+  useEffect(() => {
+   // console.log(state);
+    fetchingPatientData();
+  },[]);
+  
   return (
     <>
       <BackNavbar />
+
       <div style={{ marginTop: "7rem" }}>
+        {error ? (
+          <div
+            className="alert alert-danger d-flex align-items-center"
+            role="alert"
+          >
+            <svg
+              className="bi flex-shrink-0 me-2"
+              width="24"
+              height="24"
+              role="img"
+              aria-label="Danger:"
+            ></svg>
+            <div>{errorType}</div>
+          </div>
+        ) : null}
+
         <div className="input-group w-50 border p-5 mt-5 m-auto shadow-sm p-3 mb-5 bg-body rounded">
           <form
             className="d-flex justify-content-center m-auto flex-column w-75"
             onSubmit={handleOnSubmit}
           >
             <h2 className="mb-5">Appointment Form</h2>
-            {/* {isLoading ? (
-            <div className="d-flex align-items-center mb-5 m-auto ">
-              <strong>Loading...</strong>
-              <div
-                className="spinner-border ms-auto"
-                role="status"
-                aria-hidden="true"
-              ></div>
-            </div>
-          ) : (
-            <div></div>
-          )} */}
+            {isLoading ? (
+              <div className="d-flex align-items-center mb-5 m-auto ">
+                <strong>Loading...</strong>
+                <div
+                  className="spinner-border ms-auto"
+                  role="status"
+                  aria-hidden="true"
+                ></div>
+              </div>
+            ) : (
+              <div></div>
+            )}
 
             <div className="d-flex flex-row mb-4">
               <div className="form-outline flex-fill mb-0">
@@ -60,7 +138,7 @@ export default function Test() {
                   type="text"
                   id="p_id"
                   className="form-control"
-                  value={appointment.firstName +" "+appointment.lastName}
+                  value={appointment.firstName + " " + appointment.lastName}
                   // onChange={(e) =>
                   //   setAppointment({
                   //     ...appointment,
@@ -132,7 +210,7 @@ export default function Test() {
                   Select Time
                 </label>
                 <DatePicker
-                //  showIcon
+                  //  showIcon
                   id="appoDateTime"
                   onChange={(date) =>
                     setAppointment({
@@ -156,7 +234,7 @@ export default function Test() {
                 <label className="form-label" htmlFor="firstName">
                   Message
                 </label>
-                <textarea 
+                <textarea
                   type="text"
                   id="appoMessage"
                   className="form-control"
@@ -175,7 +253,6 @@ export default function Test() {
                 />
               </div>
             </div>
-
 
             <button type="submit" className="btn btn-dark align-self-center">
               Book Appointment

@@ -61,11 +61,15 @@ export default function DoctorHeader() {
           <div class="main-body">
             <div class="d-flex justify-content-center text-dark">
               <div class="m-3 w-25">
-                <div class="card">
+                <div class="card h-100">
                   <div class="card-body d-flex flex-row align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                         src={
+                          doctorUser.profileUrl === undefined
+                            ? "https://bootdey.com/img/Content/avatar/avatar7.png"
+                            : doctorUser.profileUrl
+                        }
                         alt="Admin"
                         class="rounded-circle"
                         width="150"

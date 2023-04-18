@@ -5,10 +5,10 @@ import LoginRequired from "../LoginRequired";
 import { useStateValue } from "../../Context/StateProvider";
 import ProfileUpdate from "./components/ProfileUpdate";
 import ProfileInfo from "./components/ProfileInfo";
-
+import BackNavbar from "../BackNavbar";
 export default function PatientDetails() {
-  const [isEdit,setEdit] = useState(false);
-  const [ {PatientUser} , dispatchUser] = useStateValue();
+  const [isEdit, setEdit] = useState(false);
+  const [{ PatientUser }, dispatchUser] = useStateValue();
 
   const searchUrl = "api/patient?search=";
   const [patientUser, setPatientData] = useState({
@@ -20,7 +20,7 @@ export default function PatientDetails() {
     phoneNo: "",
     address: "",
     password: "",
-    profileUrl:"",
+    profileUrl: "",
   });
 
   async function fetchingData() {
@@ -33,35 +33,34 @@ export default function PatientDetails() {
   }
 
   function editPatient() {
-    setEdit(! isEdit)
+    setEdit(!isEdit);
   }
-  useEffect(()=>{
+  useEffect(() => {
     fetchingData();
   });
 
   return (
     <>
-    {
-     PatientUser !== null ? 
-      <section style={{ backgroundColor: "#eee" }}>
-        <div className="container py-5">
-                  <div className="d-flex justify-content-center mb-2">
-                    <button
-                      type="button"
-                      className="btn btn-dark"
-                      onClick={editPatient}
-                    >
-                      {isEdit ? "Profile Information" : "Edit Profile"}
-                    </button>
-                  </div>
-            
-            <ProfileInfo {...patientUser}/>
-            {
-              isEdit ? <ProfileUpdate {...patientUser}/> : <></>
-            }
-        </div>
-      </section> : <LoginRequired/> 
-}
+      {PatientUser !== null ? (<>
+        <BackNavbar />
+        <section style={{ backgroundColor: "#eee" }} className="mt-5">
+          <div className="container py-5">
+            <ProfileInfo {...patientUser} />
+            <div className="d-flex justify-content-center mb-2">
+              <button
+                type="button"
+                className="btn btn-dark"
+                onClick={editPatient}
+              >
+                Update Profile
+              </button>
+            </div>
+            {isEdit ? <ProfileUpdate {...patientUser} /> : <></>}
+          </div>
+        </section> </>
+      ) : (
+        <LoginRequired />
+      )}
     </>
   );
 }
