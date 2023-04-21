@@ -20,6 +20,7 @@ import HospitalAddDoctor from './Pages/Hospital/HospitalAddDoctor';
 import DoctorExplore from './Pages/Doctor/DoctorExplore';
 import HospitalDetails from './Pages/Hospital/HospitalDetails';
 import GetAppointment from './Pages/Patient/GetAppointment';
+import PatientAppointment from './Pages/Patient/PatientAppointment';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="patientRegister" element={<PatientRegister />} />
           <Route path="patientDetails" element={<PatientDetails />} />
           <Route path="getAppointment" element={<GetAppointment />} />
+          <Route path="patientAppointment" element={<PatientAppointment />} />
 
           <Route path="hospitalHome" element={<HospitalHome />}></Route>
           <Route path="hospitalLogin" element={<HospitalLogin />} />

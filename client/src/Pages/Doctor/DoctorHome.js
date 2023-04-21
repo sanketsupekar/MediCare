@@ -4,6 +4,8 @@ import { useStateValue } from "../../Context/StateProvider";
 import DoctorNavbar from "../Doctor/DoctorNavbar";
 import DoctorHeader from "../Doctor/DoctorHeader";
 import DoctorCard from "../Doctor/DoctorCard";
+import PendingAppointments from "./components/PendingAppointment";
+import AcceptedAppointments from "./components/AcceptedAppointment";
 
 export default function DoctorHome(props) {
   const navigate = useNavigate();
@@ -33,16 +35,9 @@ export default function DoctorHome(props) {
     <>
       <DoctorNavbar />
       <DoctorHeader />
-      {/* <div className="d-flex justify-content-between flex-wrap">
-          <DoctorCard {...doctor}/>
-          <DoctorCard {...doctor}/>
-          <DoctorCard {...doctor}/>
-          <DoctorCard {...doctor}/>
-          <DoctorCard {...doctor}/>
-          <DoctorCard {...doctor}/>
-          <DoctorCard {...doctor}/>
-          <DoctorCard {...doctor}/>
-      </div> */}
+      <AcceptedAppointments/>
+      <PendingAppointments/>
+    
       
     </>
   );

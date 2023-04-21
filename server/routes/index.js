@@ -40,7 +40,7 @@ const {
   updateAppointmentId,
 } = require("../controllers/nextId.controller");
 
-const { appointmentReg } = require("../controllers/appointment.controller");
+const { appointmentReg,searchDoctorAppointment,searchPatientAppointment,updateAppointmentStatus } = require("../controllers/appointment.controller");
 const { json } = require("body-parser");
 
 // Configuration Cloudinary
@@ -336,6 +336,43 @@ router.get("/doctorId", (req, res) => {
     res.status(200).json(result[0]);
   });
 });
+
+
+router.get("/doctorAppointment", (req, res, next) => {
+ // console.log(req.query);
+ searchDoctorAppointment(req)
+    .then((result) => {
+   //    console.log(result);
+      res.status(200).json(result);
+    })
+    .catch((e) => {
+      res.status(500).json({ message: "Internet Server Error" });
+    });
+});
+
+router.get("/patientAppointment", (req, res) => {
+  console.log(req.query);
+  searchPatientAppointment(req)
+     .then((result) => {
+       console.log(result);
+       res.status(200).json(result);
+     })
+     .catch((e) => {
+       res.status(500).json({ message: "Internet Server Error" });
+     });
+ });
+
+router.post("/updateAppointmentStatus", (req, res) => {
+   console.log(req.body);
+   updateAppointmentStatus(req)
+    .then((result) => {
+       console.log(result);
+       res.status(200).json(result);
+    })
+    .catch((e) => {
+      res.status(500).json({ message: "Internet Server Error" });
+    });
+ });
 
 router.get("*", (req, res) => {
   res.send("API");

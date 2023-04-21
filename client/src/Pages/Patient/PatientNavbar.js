@@ -17,6 +17,10 @@ export default function PatientNavbar() {
   {
       navigate("/patientDetails");
   }
+  function patientAppointment()
+  {
+    navigate("/patientAppointment");
+  }
   return (
     <>
       <nav className="navbar navbar-expand-sm navbar-dark text-light bg-dark fixed-top shadow mb-5">
@@ -61,6 +65,13 @@ export default function PatientNavbar() {
                
                   <a className="nav-link active" aria-current="page" onClick={userProfile}>
                     PROFILE
+                  </a>
+               
+              </li>
+              <li className="nav-item mx-2">
+               
+                  <a className="nav-link active" aria-current="page" onClick={patientAppointment}>
+                    APPOINTMENT'S
                   </a>
                
               </li>
