@@ -15,12 +15,14 @@ import DoctorHome from './Pages/Doctor/DoctorHome';
 import DoctorDetails from './Pages/Doctor/DoctorDetails';
 import LoginRequired from './Pages/LoginRequired';
 
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HospitalAddDoctor from './Pages/Hospital/HospitalAddDoctor';
 import DoctorExplore from './Pages/Doctor/DoctorExplore';
 import HospitalDetails from './Pages/Hospital/HospitalDetails';
 import GetAppointment from './Pages/Patient/GetAppointment';
 import PatientAppointment from './Pages/Patient/PatientAppointment';
+import AppointmentDetails from './Pages/Patient/components/AppointmentDetails';
 
 function App() {
   return (
@@ -34,6 +36,7 @@ function App() {
           <Route path="patientDetails" element={<PatientDetails />} />
           <Route path="getAppointment" element={<GetAppointment />} />
           <Route path="patientAppointment" element={<PatientAppointment />} />
+          <Route path="appointmentDetails" element={<AppointmentDetails />} />     
 
           <Route path="hospitalHome" element={<HospitalHome />}></Route>
           <Route path="hospitalLogin" element={<HospitalLogin />} />

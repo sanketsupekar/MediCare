@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
   faCalendar,
-  faHospitalUser,
+  faUserDoctor,
   faHandshake,
+  faHospital,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function AppointmentCard(props) {
@@ -14,7 +16,7 @@ export default function AppointmentCard(props) {
   const [aStatus, setStatus] = useState({});
   const [error, setError] = useState(false);
   const [errorType, setErrorType] = useState("");
-
+  const navigate = useNavigate();
   function getDate(dateTemp) {
     const date = new Date(dateTemp);
     const days = [
@@ -87,11 +89,8 @@ export default function AppointmentCard(props) {
   }
 
   function acceptClick(e) {
-    setStatus({...aStatus,
-      a_id: props.a_id,
-      appoStatus: "Accepted",
-    });
-      
+    setStatus({ ...aStatus, a_id: props.a_id, appoStatus: "Accepted" });
+
     //alert("Accepted");
   }
   function rejectClick(e) {
@@ -100,10 +99,13 @@ export default function AppointmentCard(props) {
   function completeClick(e) {
     alert("Complete");
   }
+  function viewDetailsClick(){
+    navigate("/appointmentDetails",{ state: props });
+  }
 
-useEffect(()=>{
-  updateStatus(URL,aStatus);
-},[aStatus]);
+  useEffect(() => {
+    updateStatus(URL, aStatus);
+  }, [aStatus]);
   return (
     <>
       <div
@@ -117,8 +119,13 @@ useEffect(()=>{
             <div className="card swiper-slide">
               <div className="card-content align-items-start">
                 <h1 className="name">
-                  <FontAwesomeIcon icon={faHospitalUser} className="mx-3" />
-                  {props.firstName + " " + props.lastName}{" "}
+                  <FontAwesomeIcon icon={faUserDoctor} className="mx-3" />
+                  {"Dr. " + props.name}
+                </h1>
+
+                <h1 className="specialist">
+                  <FontAwesomeIcon icon={faHospital} className="mx-3" />
+                  {props.hospitalName + " Hospital"}
                 </h1>
 
                 <h1 className="specialist">
@@ -135,22 +142,21 @@ useEffect(()=>{
 
                   {props.appoStatus}
                 </h1>
+                {props.appoStatus === "Rejected" ? (
+                  <p className="description align-self-center text-danger">{props.appoMessage}</p>
+                ) : (
+                  <></>
+                )}
 
-                <p className="description text-start">{props.appoMessage}</p>
-               
-
-       <div class="d-flex justify-content-around text-dark w-100">
-
-                <button
+                <div class="d-flex justify-content-around text-dark w-100">
+                  <button
                     type="button"
                     class="btn btn-dark"
-                    onClick={completeClick}
+                    onClick={viewDetailsClick}
                   >
                     View Details
                   </button>
                 </div>
-
-                
               </div>
             </div>
           </div>

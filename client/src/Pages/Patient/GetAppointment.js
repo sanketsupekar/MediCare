@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function GetAppointment() {
   const URL = "/api/getAppointment";
   const searchUrl = "api/patient?search=";
-
+  const navigate = useNavigate();
   const { state } = useLocation();
   const [date, setDate] = useState();
   const [isLoading, setLoading] = useState(false);
@@ -71,8 +71,7 @@ export default function GetAppointment() {
         }, 1500);
       } else if (respones.status == 200) {
         console.log(json);
-        window.location.reload(false);
-        
+        navigate("/patientAppointment")
       }
     } catch (e) {
       console.log("Error : ", e);

@@ -7,9 +7,9 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useStateValue } from "../../../Context/StateProvider";
 import { useNavigate } from "react-router-dom";
 
-export default function PendingAppointments(props) {
+export default function AcceptedAppointments(props) {
   const URL = "/api/patientAppointment?search=";
-  const STATUS = "Pending";
+  const STATUS = "Rejected";
   const navigate = useNavigate();
   function backClick() {
     navigate(-1);
@@ -35,8 +35,8 @@ export default function PendingAppointments(props) {
         <section className="mt-5">
           <div class="two alt-two py-3 mt-5 mb-5">
             <h1>
-              Pending Appointment's
-              <span>There are {appointment.length} Pending Appointments</span>
+              Rejected Appointment's
+              <span>There are {appointment.length} Rejected Appointments</span>
             </h1>
           </div>
           <div className="d-flex justify-content-around flex-wrap container">

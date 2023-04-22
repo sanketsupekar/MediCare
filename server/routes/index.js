@@ -363,7 +363,7 @@ router.get("/patientAppointment", (req, res) => {
  });
 
 router.post("/updateAppointmentStatus", (req, res) => {
-   console.log(req.body);
+  // console.log(req.body);
    updateAppointmentStatus(req)
     .then((result) => {
        console.log(result);

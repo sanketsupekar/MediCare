@@ -26,21 +26,27 @@ export default function PendingAppointments(props) {
   });
   return (
     <>
+    {appointment.length !== 0 ? (
       <section className="mt-5">
-        <div class="two alt-two py-3 mb-4">
+        <div class="two alt-two py-3 mt-5 mb-5">
           <h1>
             Pending Appointment's
             <span>There are {appointment.length} pending appointments</span>
           </h1>
         </div>
         <div className="d-flex justify-content-around flex-wrap container">
-        {appointment.length !== 0 ? appointment.map((appo, key) => {
-          return (
-            <AppointmentCard key={key} {...appo}/>
-          );
-        }) : <></>}
+          {appointment.length !== 0 ? (
+            appointment.map((appo, key) => {
+              return <AppointmentCard key={key} {...appo} />;
+            })
+          ) : (
+            <></>
+          )}
         </div>
       </section>
-    </>
+    ) : (
+      <></>
+    )}
+  </>
   );
 }

@@ -9,38 +9,46 @@ import { useStateValue } from "../../../Context/StateProvider";
 export default function AcceptedAppointments(props) {
   const URL = "/api/doctorAppointment?search=";
   const STATUS = "Accepted";
-  
+
   const [{ DoctorUser, dispatchUser }] = useStateValue();
 
   const [appointment, setAppointment] = useState([]);
 
-  async function fetchingData(url,doctorId,status) {
-    const respones = await fetch(url + doctorId +"+"+status).catch((e) => console.error(e));
+  async function fetchingData(url, doctorId, status) {
+    const respones = await fetch(url + doctorId + "+" + status).catch((e) =>
+      console.error(e)
+    );
     const json = respones ? await respones.json() : [];
     setAppointment(json);
-   // console.log(appointment);
+    // console.log(appointment);
   }
 
   useEffect(() => {
-    fetchingData(URL,DoctorUser,STATUS);
+    fetchingData(URL, DoctorUser, STATUS);
   });
   return (
     <>
-      <section className="mt-5">
-        <div class="two alt-two py-3 mb-4">
-          <h1>
-            Scheduled Appointment's
-            <span>There are {appointment.length} Scheduled Appointments</span>
-          </h1>
-        </div>
-        <div className="d-flex justify-content-around flex-wrap container">
-        {appointment.length !== 0 ? appointment.map((appo, key) => {
-          return (
-            <AppointmentCard key={key} {...appo}/>
-          );
-        }) : <></>}
-        </div>
-      </section>
+      {appointment.length !== 0 ? (
+        <section className="mt-5">
+          <div class="two alt-two py-3 mt-5 mb-5">
+            <h1>
+              Sheduled Appointment's
+              <span>There are {appointment.length} Sheduled Appointments</span>
+            </h1>
+          </div>
+          <div className="d-flex justify-content-around flex-wrap container">
+            {appointment.length !== 0 ? (
+              appointment.map((appo, key) => {
+                return <AppointmentCard key={key} {...appo} />;
+              })
+            ) : (
+              <></>
+            )}
+          </div>
+        </section>
+      ) : (
+        <></>
+      )}
     </>
   );
 }

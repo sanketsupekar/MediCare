@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
@@ -11,6 +12,11 @@ import {
 
 export default function AppointmentCard(props) {
   const URL = "/api/updateAppointmentStatus";
+  const [rejected,setRejected] = useState(0);
+  const [rejectReason, setReason] = useState("");
+  // rejected => 0 (initial State), 1 (Open Text Box), 2(Confirm Reject)
+  
+  const navigate = useNavigate();
   const [aStatus, setStatus] = useState({});
   const [error, setError] = useState(false);
   const [errorType, setErrorType] = useState("");
@@ -95,10 +101,21 @@ export default function AppointmentCard(props) {
     //alert("Accepted");
   }
   function rejectClick(e) {
-    alert("Rejected");
+    if(rejected === 1)
+    {
+      setStatus({...aStatus,
+        a_id: props.a_id,
+        appoStatus: "Rejected",
+        appoMessage:rejectReason,
+      });
+    }
+    setRejected(1);
   }
   function completeClick(e) {
     alert("Complete");
+  }
+  function viewDetailsClick(){
+    navigate("/appointmentDetails",{ state: props });
   }
 
 useEffect(()=>{
@@ -135,9 +152,27 @@ useEffect(()=>{
 
                   {props.appoStatus}
                 </h1>
-
                 <p className="description text-start">{props.appoMessage}</p>
-                {props.appoStatus === "Pending" ? (<div class="d-flex justify-content-around text-dark w-100">
+
+                {
+                  (rejected === 1) ?(<textarea
+                    type="text"
+                    id="rejectionReason"
+                    className="form-control"
+                    value={rejectReason}
+                    onChange={(e) =>
+                    setReason(e.target.value)
+                    }
+                    placeholder={"Rejection Reason"}
+                    minLength={5}
+                    maxLength={500}
+                    rows={2}
+                    required
+                  />):(<></>) 
+                }
+                
+
+                {props.appoStatus === "Pending" ? (<div class="d-flex justify-content-around text-dark mt-3 w-100">
                   <button
                     type="button"
                     class="btn btn-success"
@@ -148,18 +183,20 @@ useEffect(()=>{
                   <button
                     type="button"
                     class="btn btn-danger"
+                   disabled = {rejected === 1 && rejectReason === ""}
                     onClick={rejectClick}
                   >
-                    Reject
+                    {rejected === 0 ? "Reject" : (rejected === 1 ? "Confirm Reject" : "")}
                   </button>
                 </div>):<></>}
 
+               
                 {props.appoStatus === "Accepted" ? (<div class="d-flex justify-content-around text-dark w-100">
 
                 <button
                     type="button"
                     class="btn btn-dark"
-                    onClick={completeClick}
+                    onClick={viewDetailsClick}
                   >
                     View Details
                   </button>

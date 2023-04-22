@@ -20,7 +20,7 @@ async function searchDoctorAppointment(req)
 async function searchPatientAppointment(req)
 {
     const data = req.query.search;
-    console.log(data);
+  //  console.log(data);
     const dataArray = data.split(" ");
     const p_id = dataArray[0];
     const appoStatus = dataArray[1];
@@ -32,6 +32,9 @@ async function searchPatientAppointment(req)
 async function updateAppointmentStatus(req)
 {
     const data = req.body;
+    //console.log("Data in function");
+    //console.log(data);
+
     const updateStatus = Appointment.updateOne({a_id : data.a_id},{$set: data}).catch(e => console.log("errrr",e));
     return updateStatus;
 }
