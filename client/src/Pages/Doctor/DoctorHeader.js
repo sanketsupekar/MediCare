@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import headerbg from "../../image/header_img.jpg";
 import { useStateValue } from "../../Context/StateProvider";
 
@@ -8,16 +8,16 @@ export default function DoctorHeader() {
   const [doctorUser, setDoctorUser] = useState({
     _id: null,
     d_id: "",
-    h_id:"",
+    h_id: "",
     name: "",
     speciality: "",
     mail: "",
     phoneNo: "",
     address: "",
     password: "",
-    experience:"",
-    charges:"",
-    qualification:""
+    experience: "",
+    charges: "",
+    qualification: "",
   });
 
   async function fetchingData() {
@@ -42,7 +42,7 @@ export default function DoctorHeader() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          height:"90vh",
+          height: "90vh",
           backgroundColor: "black",
         }}
       >
@@ -65,7 +65,7 @@ export default function DoctorHeader() {
                   <div class="card-body d-flex flex-row align-items-center justify-content-center">
                     <div class="d-flex flex-column align-items-center text-center">
                       <img
-                         src={
+                        src={
                           doctorUser.profileUrl === undefined
                             ? "https://bootdey.com/img/Content/avatar/avatar7.png"
                             : doctorUser.profileUrl
@@ -73,6 +73,7 @@ export default function DoctorHeader() {
                         alt="Admin"
                         class="rounded-circle"
                         width="150"
+                        height="150"
                       ></img>
                       <div class="mt-3">
                         <h4>Dr. {doctorUser.name}</h4>
@@ -91,9 +92,7 @@ export default function DoctorHeader() {
                         <label>{doctorUser.d_id}</label>
                       </div>
                       <div className="d-flex border-top border-bottom p-2">
-                        <label className="fw-bold  mx-2">
-                          Doctor Name :
-                        </label>
+                        <label className="fw-bold  mx-2">Doctor Name :</label>
                         <label>{doctorUser.name}</label>
                       </div>
                       <div className="d-flex border-top border-bottom p-2">
@@ -126,7 +125,6 @@ export default function DoctorHeader() {
                         <label className="fw-bold mx-2"> Qualification: </label>
                         <label>{doctorUser.qualification}</label>
                       </div> */}
-
                     </div>
                   </div>
                 </div>

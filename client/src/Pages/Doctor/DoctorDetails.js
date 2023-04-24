@@ -42,7 +42,7 @@ export default function DoctorDetails() {
   }
 
   function bookAppointment() {
-    navigate("/getAppointment",{state : doctorData});
+    navigate("/getAppointment", { state: doctorData });
   }
   function editDoctor() {
     setEdit(!isEdit);
@@ -56,63 +56,64 @@ export default function DoctorDetails() {
     <>
       {PatientUser !== null || HospitalUser !== null || DoctorUser !== null ? (
         <>
-        <BackNavbar />
-        <section style={{ backgroundColor: "#eee" }} className="mt-5">
-          <div className="container py-5">
-            <div className="d-flex flex-column align-items-center justify-content-center w-100">
-              <div className="w-100">
-                <div className="card mb-4">
-                  <div className="card-body text-center">
-                    <img
-                      src={
-                        doctorData.profileUrl === undefined
-                          ? "https://bootdey.com/img/Content/avatar/avatar7.png"
-                          : doctorData.profileUrl
-                      }
-                      alt="avatar"
-                      className="rounded-circle img-fluid"
-                      style={{ width: "150px" }}
-                    />
-                    <h5 className="my-2">Dr. {doctorData.name}</h5>
-                    <p className="text-muted mb-4">
-                      {doctorData.speciality} Specialist
-                    </p>
+          <BackNavbar />
+          <section style={{ backgroundColor: "#eee" }} className="mt-5">
+            <div className="container py-5">
+              <div className="d-flex flex-column align-items-center justify-content-center w-100">
+                <div className="w-100">
+                  <div className="card mb-4">
+                    <div className="card-body text-center">
+                      <img
+                        src={
+                          doctorData.profileUrl === undefined
+                            ? "https://bootdey.com/img/Content/avatar/avatar7.png"
+                            : doctorData.profileUrl
+                        }
+                        alt="avatar"
+                        className="rounded-circle img-fluid"
+                        style={{ width: "10rem", height: "10rem" }}
+                      />
+                      <h5 className="my-2">Dr. {doctorData.name}</h5>
+                      <p className="text-muted mb-4">
+                        {doctorData.speciality} Specialist
+                      </p>
 
-                    {PatientUser !== null ? (
-                      <div className="d-flex justify-content-center mb-2">
-                        <button
-                          type="button"
-                          className="btn btn-dark"
-                          onClick={bookAppointment}
-                        >
-                          Book Appointment
-                        </button>
-                      </div>
-                    ) : (
-                      <></>
-                    )}
+                      {PatientUser !== null ? (
+                        <div className="d-flex justify-content-center mb-2">
+                          <button
+                            type="button"
+                            className="btn btn-dark"
+                            onClick={bookAppointment}
+                          >
+                            Book Appointment
+                          </button>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
 
-                    {DoctorUser !== null ? (
-                      <div className="d-flex justify-content-center mb-5">
-                        <button
-                          type="button"
-                          className="btn btn-dark"
-                          onClick={editDoctor}
-                        >
-                          Edit Profile
-                        </button>
-                      </div>
-                    ) : (
-                      <></>
-                    )}
+                      {DoctorUser !== null ? (
+                        <div className="d-flex justify-content-center mb-5">
+                          <button
+                            type="button"
+                            className="btn btn-dark"
+                            onClick={editDoctor}
+                          >
+                            Edit Profile
+                          </button>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   </div>
                 </div>
+                <ProfileInfo {...doctorData} />
+                {isEdit ? <ProfileUpdate {...doctorData} /> : <></>}
               </div>
-              <ProfileInfo {...doctorData} />
-              {isEdit ? <ProfileUpdate {...doctorData} /> : <></>}
             </div>
-          </div>
-        </section> </>
+          </section>{" "}
+        </>
       ) : (
         <LoginRequired></LoginRequired>
       )}

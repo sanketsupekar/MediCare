@@ -11,8 +11,7 @@ export default function DoctorSlide() {
   const navigate = useNavigate();
 
   async function fetchingData() {
-    const respones = await fetch(URL)
-      .catch((e) => console.error(e));
+    const respones = await fetch(URL).catch((e) => console.error(e));
     const json = respones ? await respones.json() : [];
     setDoctorData(json);
     console.log(doctorData);
@@ -20,23 +19,22 @@ export default function DoctorSlide() {
 
   const userData = [
     {
-        d_id: "D101",
-        h_id: "H101",
-        name: "Sanket",
-        speciality: "Brain",
-        mail: "sanket@gmail.com",
-        phoneNo: 9130420859,
-        address: "Pune",
-        password: "sans",
-        experience: "50",
-        charges: 5000,
-        qualification: "B.Tech",
+      d_id: "D101",
+      h_id: "H101",
+      name: "Sanket",
+      speciality: "Brain",
+      mail: "sanket@gmail.com",
+      phoneNo: 9130420859,
+      address: "Pune",
+      password: "sans",
+      experience: "50",
+      charges: 5000,
+      qualification: "B.Tech",
     },
   ];
-   function exploreClick()
-   {
-      navigate("/doctorExplore");
-   }
+  function exploreClick() {
+    navigate("/doctorExplore");
+  }
   //Owl Carousel Settings
   const options = {
     loop: true,
@@ -60,11 +58,11 @@ export default function DoctorSlide() {
     },
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchingData();
-  },[]);
+  }, []);
   return (
-    <section id="testimonial_doctor" className="testimonials pt-70 pb-70" style={{height:"95vh"}}>
+    <section id="testimonial_doctor" className="testimonials pt-70 pb-70">
       <div className="container mt-5">
         <div class="two alt-two ">
           <h1>
@@ -73,7 +71,9 @@ export default function DoctorSlide() {
           </h1>
         </div>
         <div className="font-weight-bold text-center">
-            <button className="btn btn-dark m-3" onClick={exploreClick}><strong> Explore </strong></button>
+          <button className="btn btn-dark m-3" onClick={exploreClick}>
+            <strong> Explore </strong>
+          </button>
         </div>
         <div className="row">
           <div className="col-md-12">

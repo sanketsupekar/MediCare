@@ -11,17 +11,15 @@ export default function HospitalSlide() {
   const URL = "/api/hospital?search=";
   const [doctorData, setDoctorData] = useState([]);
   async function fetchingData() {
-    const respones = await fetch(URL)
-      .catch((e) => console.error(e));
+    const respones = await fetch(URL).catch((e) => console.error(e));
     const json = respones ? await respones.json() : [];
     setDoctorData(json);
     console.log(doctorData);
   }
 
-   function exploreClick()
-   {
-      navigate("/hospitalExplore")
-   }
+  function exploreClick() {
+    navigate("/hospitalExplore");
+  }
   //Owl Carousel Settings
   const options = {
     loop: true,
@@ -45,13 +43,12 @@ export default function HospitalSlide() {
     },
   };
 
-  useEffect(()=>{
-    
+  useEffect(() => {
     fetchingData();
-  },[]);
+  }, []);
 
   return (
-    <section id="testimonial_hospital" className="testimonials pt-70 pb-70" style={{height:"100vh"}}>
+    <section id="testimonial_hospital" className="testimonials pt-70 pb-70">
       <div className="container mt-5">
         <div class="two alt-two ">
           <h1>
@@ -60,7 +57,9 @@ export default function HospitalSlide() {
           </h1>
         </div>
         <div className="font-weight-bold text-center">
-            <button className="btn btn-dark m-3" onClick={exploreClick}><strong> Explore </strong></button>
+          <button className="btn btn-dark m-3" onClick={exploreClick}>
+            <strong> Explore </strong>
+          </button>
         </div>
         <div className="row">
           <div className="col-md-12">

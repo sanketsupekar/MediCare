@@ -43,8 +43,7 @@ export default function PatientRegister(props) {
           setError(false);
           console.log(json);
         }, 1500);
-      }
-      else if(respones.status == 200){
+      } else if (respones.status == 200) {
         console.log(json);
         navigate("/hospitalLogin");
       }
@@ -53,13 +52,12 @@ export default function PatientRegister(props) {
     }
   }
 
-  async function getNextHospitalId()
-  {
-     const response = await fetch(URL_H_ID).catch((e)=>{
+  async function getNextHospitalId() {
+    const response = await fetch(URL_H_ID).catch((e) => {
       console.log(e);
-     })
-     const data = await response.json();
-     setFormData({ ...formData, h_id: data.hospital_id})
+    });
+    const data = await response.json();
+    setFormData({ ...formData, h_id: data.hospital_id });
   }
   function handleOnSubmit(e) {
     e.preventDefault();
@@ -67,13 +65,13 @@ export default function PatientRegister(props) {
     uploadingData(URL, formData);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getNextHospitalId();
-  },[]);
+  }, []);
 
   return (
     <>
-      <NavBar/>
+      <NavBar />
       <div className="mt-5">.</div>
       {error ? (
         <div
@@ -147,7 +145,7 @@ export default function PatientRegister(props) {
                 }
                 placeholder={"Enter Name"}
                 minLength={1}
-                maxLength={10}
+                maxLength={25}
                 required
               />
             </div>
@@ -167,7 +165,7 @@ export default function PatientRegister(props) {
                 }
                 placeholder={"Enter Speciality"}
                 minLength={1}
-                maxLength={10}
+                maxLength={20}
                 required
               />
             </div>
@@ -230,7 +228,7 @@ export default function PatientRegister(props) {
                 }
                 placeholder={"Enter Address"}
                 minLength={1}
-                maxLength={10}
+                maxLength={30}
                 required
               />
             </div>
@@ -268,7 +266,6 @@ export default function PatientRegister(props) {
               </a>
             </Link>
           </div>
-
         </form>
       </div>
     </>
