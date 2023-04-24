@@ -4,6 +4,7 @@ const {
   disconnectToDb,
 } = require("../controllers/mongoose.controller");
 const { getHospitalName } = require("./hospital.controller");
+const {isHospitalId} = require("./funtions.controller");
 
 async function doctorRegister(req) {
   const data = req.body;
@@ -30,9 +31,16 @@ async function doctorLogin(req) {
 async function searchDoctor(req) {
   const searchQuery = req.query.search && req.query.search.toLowerCase();
   // console.log(searchQuery);
+  // if(isHospitalId(searchQuery))
+  // {
+  //   const doctorData = await Doctor.find({h_id : searchQuery})
+  //   return doctorData;
+  // }
+
   const doctorData = await Doctor.find({
     $or: [
       { d_id: { $regex: searchQuery, $options: "i" } },
+      { h_id: { $regex: searchQuery, $options: "i" } },
       { name: { $regex: searchQuery, $options: "i" } },
       { speciality: { $regex: searchQuery, $options: "i" } },
       { qualification: { $regex: searchQuery, $options: "i" } },

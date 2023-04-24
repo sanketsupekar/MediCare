@@ -7,31 +7,27 @@ import hospitalImage from "../../image/hospital.jpg";
 import ProfileInfo from "./components/ProfileInfo";
 import ProfileUpdate from "./components/ProfileUpdate";
 import BackNavbar from "../BackNavbar";
+import DoctorList from "./components/DoctorList";
 export default function HospitalDetails() {
   const { state } = useLocation();
   const [isEdit, setEdit] = useState(false);
   const [{ HospitalUser }, dispatchHospital] = useStateValue();
   const [{ PatientUser }, dispatchPatient] = useStateValue();
-  const searchUrl = "api/hospital?search=";
+  const searchHospital = "api/hospital?search=";
+  const searchDoctor = "api/doctor?search=";
 
-  const [hospitalData, setHospitalData] = useState({
-    _id: null,
-    h_id: "",
-    name: "",
-    speciality: "",
-    mail: "",
-    phoneNo: "",
-    address: "",
-    profileUrl: "",
-  });
-
-  async function fetchingData() {
+  const [hospitalData, setHospitalData] = useState({});
+  const [doctorData, setDoctorData] = useState([]);
+ 
+  async function fetchingData(searchUrl,typeOfSearch) {
     const respones = await fetch(searchUrl + state.h_id).catch((e) =>
       console.error(e)
     );
     const json = respones ? await respones.json() : [];
-    setHospitalData(json[0]);
-  }
+    if(typeOfSearch === 0)setHospitalData(json[0]);
+    if(typeOfSearch === 1) setDoctorData(json);
+    //console.log(json);
+    }
 
   function bookAppointment() {
     alert("Book Appointment");
@@ -40,8 +36,15 @@ export default function HospitalDetails() {
     setEdit(!isEdit);
   }
 
+  
   useEffect(() => {
-    fetchingData();
+    // 0 -> Search Hospital
+    fetchingData(searchHospital,0);
+  });
+
+  useEffect(() => {
+    // 1 -> Search Doctors
+    fetchingData(searchDoctor,1);
   });
 
   return (
@@ -124,6 +127,8 @@ export default function HospitalDetails() {
                   </div>
                 </div>
                 <ProfileInfo {...hospitalData} />
+                <DoctorList doctorData = {doctorData} />
+                
                 {isEdit ? <ProfileUpdate {...hospitalData} /> : <></>}
               </div>
             </div>

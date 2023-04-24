@@ -167,8 +167,16 @@ router.post("/getAppointment", (req, res) => {
       updateAppointmentId(incrementId(req.body.a_id));
     })
     .catch((e) => {
-      console.log(e);
-      res.status(500).json({ message: "Internet Server Error" });
+      console.log(e. _message);
+      if(e._message === "appointment validation failed")
+      {
+        res.status(404).json({ message: "Update Profile Details Properly..." });
+      }
+      else
+      {
+        res.status(500).json({ message: "Internet Server Error" });
+      }
+      
     });
   }).catch((e)=>{
     console.log(e);

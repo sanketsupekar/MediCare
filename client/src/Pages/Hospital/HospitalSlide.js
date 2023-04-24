@@ -5,16 +5,19 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import HospitalCard from "./HospitalCard";
 import { useNavigate, useParams } from "react-router-dom";
+import { useStateValue } from "../../Context/StateProvider";
 
 export default function HospitalSlide() {
   const navigate = useNavigate();
   const URL = "/api/hospital?search=";
-  const [doctorData, setDoctorData] = useState([]);
+
+
+  const [hospitalData, setHospitalData] = useState([]);
   async function fetchingData() {
     const respones = await fetch(URL).catch((e) => console.error(e));
     const json = respones ? await respones.json() : [];
-    setDoctorData(json);
-    console.log(doctorData);
+    setHospitalData(json);
+    console.log(hospitalData);
   }
 
   function exploreClick() {
@@ -68,7 +71,7 @@ export default function HospitalSlide() {
               className="owl-carousel owl-theme"
               {...options}
             >
-              {doctorData.map((user, key) => {
+              {hospitalData.slice(0,5).map((user, key) => {
                 return <HospitalCard key={key} {...user} />;
               })}
             </OwlCarousel>

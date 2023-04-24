@@ -106,9 +106,19 @@ export default function DoctorExplore() {
           
       <div className="d-flex flex-wrap justify-content-around ">
         {userData.map((user, key) => {
-          return (
-            <DoctorCard key={key} {...user}/>
-          );
+          if(HospitalUser != null && user.h_id === HospitalUser)
+          {
+            return (
+              <DoctorCard key={key} {...user}/>
+            );
+          }
+          if(PatientUser != null)
+          {
+            return (
+              <DoctorCard key={key} {...user}/>
+            );
+          }
+          return null;
         })}
       </div>
       )}

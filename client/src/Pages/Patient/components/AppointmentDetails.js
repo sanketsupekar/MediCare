@@ -100,10 +100,11 @@ export default function AppointmentDetails(props) {
                     alt="Admin"
                     class="rounded-circle"
                     width="150"
+                    height="150"
                   ></img>
                   <div class="mt-3">
-                    <h4>{patientUser.firstName}</h4>
-                    <h4>{patientUser.lastName}</h4>
+                    <h4>{patientUser.firstName + " " + patientUser.lastName}</h4>
+     
                   </div>
                 </div>
               </div>
@@ -185,10 +186,11 @@ export default function AppointmentDetails(props) {
                     alt="Admin"
                     class="rounded-circle"
                     width="150"
+                    height="150"
                   ></img>
                   <div class="mt-3">
-                    <h4>{doctorUser.firstName}</h4>
-                    <h4>{doctorUser.lastName}</h4>
+                    <h4>Dr. {doctorUser.name}</h4>
+                    {/* <h4>{doctorUser.lastName}</h4> */}
                   </div>
                 </div>
               </div>

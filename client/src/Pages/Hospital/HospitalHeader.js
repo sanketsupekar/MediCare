@@ -44,7 +44,7 @@ export default function PatientHeader() {
         <div className=" header-wrapper w-75  m-auto my-5 py-5">
           <div className="">Welcome</div>
           <div className="card-body">
-            <h1 className="card-title fw-bolder">Hey, {hospitalUser.name}</h1>
+            <h1 className="card-title fw-bolder">Hey, {hospitalUser.name} Hospital</h1>
             {/* <p className="card-text fw-lighter ">
               <span className="fw-bolder ">
                 This is a simple phone directory web application which supports
@@ -80,7 +80,7 @@ export default function PatientHeader() {
               </div>
 
               <div class="m-3 w-50">
-                <div class="card">
+                <div class="card h-100">
                   <div className="d-flex my-3 h-100">
                     <div className="d-flex flex-column justify-content-around mx-5 w-100">
                       <div className="d-flex border-top border-bottom p-2">

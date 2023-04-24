@@ -15,6 +15,7 @@ export default function ProfileInfo(props) {
                         alt="Admin"
                         class="rounded-circle"
                         width="150"
+                        height="150"
                       ></img>
                       <div class="mt-3">
                         <h4>{props.firstName}</h4>
