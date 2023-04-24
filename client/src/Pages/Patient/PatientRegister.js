@@ -42,23 +42,20 @@ export default function PatientRegister(props) {
           setError(false);
           console.log(json);
         }, 1500);
-      }
-      else if(respones.status == 200){
+      } else if (respones.status == 200) {
         console.log(json);
         navigate("/patientLogin");
       }
-
     } catch (e) {
       console.log("Error : ", e);
     }
   }
-  async function getNextPatientId()
-  {
-     const response = await fetch(URL_P_ID).catch((e)=>{
+  async function getNextPatientId() {
+    const response = await fetch(URL_P_ID).catch((e) => {
       console.log(e);
-     })
-     const data = await response.json();
-     setFormData({ ...formData, p_id: data.patient_id})
+    });
+    const data = await response.json();
+    setFormData({ ...formData, p_id: data.patient_id });
   }
 
   function handleOnSubmit(e) {
@@ -66,14 +63,14 @@ export default function PatientRegister(props) {
     console.log(formData);
     uploadingData(URL, formData);
   }
-  useEffect(()=>{
+  useEffect(() => {
     getNextPatientId();
-  },[]);
+  }, []);
 
   return (
     <>
-      <NavBar/>
-      
+      <NavBar />
+
       <div className="mt-5">.</div>
       {error ? (
         <div
@@ -230,7 +227,7 @@ export default function PatientRegister(props) {
                 }
                 placeholder={"Enter Address"}
                 minLength={1}
-                maxLength={10}
+                maxLength={20}
                 required
               />
             </div>
@@ -268,7 +265,6 @@ export default function PatientRegister(props) {
               </a>
             </Link>
           </div>
-
         </form>
       </div>
     </>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import headerbg from "../../image/header_img.jpg";
 import { useStateValue } from "../../Context/StateProvider";
-import hospitalImage from "../../image/hospital.jpg"
+import hospitalImage from "../../image/hospital.jpg";
 export default function PatientHeader() {
   const [{ HospitalUser }, dispatchUser] = useStateValue();
   const searchUrl = "api/hospital?search=";
@@ -37,7 +37,7 @@ export default function PatientHeader() {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           width: "100%",
-          height:"90vh",
+          height: "90vh",
           backgroundColor: "black",
         }}
       >
