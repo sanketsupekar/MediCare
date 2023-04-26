@@ -112,7 +112,10 @@ export default function AppointmentCard(props) {
     setRejected(1);
   }
   function completeClick(e) {
-    alert("Complete");
+    setStatus({...aStatus,
+      a_id: props.a_id,
+      appoStatus: "Completed",
+    });
   }
   function viewDetailsClick(){
     navigate("/appointmentDetails",{ state: props });
