@@ -4,8 +4,9 @@ import Header from "../components/Header"
 import DoctorSlide from "../Pages/Doctor/DoctorSlide";
 import HospitalSlide from "../Pages/Hospital/HospitalSlide";
 import { useNavigate, useParams } from "react-router-dom";
-
-
+import AboutUs from "./AboutUs";
+import ContactUs from "./ContactUs";
+import Footer from "./Footer";
 export default function Home(props) {
   const navigate = useNavigate();
   useEffect(()=>{
@@ -29,8 +30,13 @@ export default function Home(props) {
     <>
       <NavBar/>
       <Header/>
+ 
       <HospitalSlide />
       <DoctorSlide />
+      <AboutUs/>
+      <ContactUs/>
+      <Footer />
+
     </>
   );
 }

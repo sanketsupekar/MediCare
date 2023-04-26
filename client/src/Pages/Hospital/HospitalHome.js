@@ -4,6 +4,9 @@ import { useStateValue } from "../../Context/StateProvider";
 import HospitalNavbar from "../Hospital/HospitalNavbar";
 import HospitalHeader from "../Hospital/HospitalHeader"
 import DoctorSlide from '../Doctor/DoctorSlide';
+import AboutUs from "../../components/AboutUs";
+import ContactUs from "../../components/ContactUs";
+import Footer from "../../components/Footer";
 
 export default function HospitalHome(props) {
     const navigate = useNavigate();
@@ -20,5 +23,8 @@ export default function HospitalHome(props) {
     <HospitalNavbar />
     <HospitalHeader />
     <DoctorSlide />
+    <AboutUs />
+      <ContactUs />
+      <Footer />
   </>
 }

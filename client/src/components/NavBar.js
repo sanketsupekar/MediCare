@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/js/src/collapse.js";
 import logo from "../image/logo.png";
 import { Link } from "react-router-dom";
-import '../App';
+import "../App";
 
 export default function NavBar() {
   return (
@@ -37,7 +37,6 @@ export default function NavBar() {
             id="navbarTogglerDemo03"
           >
             <ul className="navbar-nav w-100 d-flex justify-content-end me-auto mb-2 mb-lg-0">
-  
               <li className="nav-item mx-2">
                 <Link to="/home" className="text-decoration-none">
                   <a className="nav-link active" aria-current="page">
@@ -45,20 +44,20 @@ export default function NavBar() {
                   </a>
                 </Link>
               </li>
-              <li className="nav-item mx-2">
+              {/* <li className="nav-item mx-2">
                 <Link to="/home" className="text-decoration-none">
                   <a className="nav-link active" aria-current="page">
                     ABOUT US
                   </a>
                 </Link>
-              </li>
-              <li className="nav-item mx-2">
+              </li> */}
+              {/* <li className="nav-item mx-2">
                 <Link to="/home" className="text-decoration-none">
                   <a className="nav-link active" aria-current="page">
                     CONTACT US
                   </a>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

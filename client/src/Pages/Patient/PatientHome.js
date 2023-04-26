@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStateValue } from "../../Context/StateProvider";
-import PatientHeader from './PatientHeader';
+import PatientHeader from "./PatientHeader";
 import PatientNavbar from "./PatientNavbar";
-import DoctorSlide from '../Doctor/DoctorSlide';
-import HospitalSlide from '../Hospital/HospitalSlide';
+import DoctorSlide from "../Doctor/DoctorSlide";
+import HospitalSlide from "../Hospital/HospitalSlide";
+import AboutUs from "../../components/AboutUs";
+import ContactUs from "../../components/ContactUs";
+import Footer from "../../components/Footer";
 export default function PatientHome(props) {
   const navigate = useNavigate();
-  const [ {PatientUser} , dispatchUser] = useStateValue();
+  const [{ PatientUser }, dispatchUser] = useStateValue();
   const searchUrl = "api/patient?search=";
   const [patientUser, setPatientData] = useState({
     _id: null,
@@ -29,23 +32,27 @@ export default function PatientHome(props) {
     console.log(json);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(PatientUser);
-    if(PatientUser === null || PatientUser === "null")
-    {
-        navigate("/patientLogin");
+    if (PatientUser === null || PatientUser === "null") {
+      navigate("/patientLogin");
     }
-  },[]);
+  }, []);
 
   useEffect(() => {
     fetchingData();
   }, [PatientNavbar]); // eslint-disable-line
 
-  return <> 
-  <PatientNavbar />
-  <PatientHeader {...patientUser}/>
-  <HospitalSlide /> 
-  <DoctorSlide /> 
-  {/* <h1>Hello, Patient Home {PatientUser}</h1>  */}
-  </>
+  return (
+    <>
+      <PatientNavbar />
+      <PatientHeader {...patientUser} />
+      <HospitalSlide />
+      <DoctorSlide />
+      <AboutUs />
+      <ContactUs />
+      <Footer />
+      {/* <h1>Hello, Patient Home {PatientUser}</h1>  */}
+    </>
+  );
 }

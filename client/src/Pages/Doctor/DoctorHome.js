@@ -7,6 +7,10 @@ import DoctorCard from "../Doctor/DoctorCard";
 import PendingAppointments from "./components/PendingAppointment";
 import AcceptedAppointments from "./components/AcceptedAppointment";
 
+import AboutUs from "../../components/AboutUs";
+import ContactUs from "../../components/ContactUs";
+import Footer from "../../components/Footer";
+
 export default function DoctorHome(props) {
   const navigate = useNavigate();
   const [{ DoctorUser }, dispatchUser] = useStateValue();
@@ -37,6 +41,9 @@ export default function DoctorHome(props) {
       <DoctorHeader />
       <AcceptedAppointments/>
       <PendingAppointments/>
+           <AboutUs />
+      <ContactUs />
+      <Footer />
     
       
     </>

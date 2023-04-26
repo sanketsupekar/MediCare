@@ -274,3 +274,375 @@ button:hover {
   margin-top: 5rem !important;
   background-color: #000000;
 }
+/*###################################### Contact-us ################################################*/
+
+
+:root {
+  --bg-color: black;
+  --primary-color: white;
+  --secondary-color: black;
+  --text-color: black;
+  --text-color-2: black;
+  --overlay-color: rgb(12 12 12 / 63%);
+}
+
+[data-theme="light"] {
+  --bg-color: black;
+  --primary-color: black;
+  --secondary-color: white;
+  --text-color: white;
+  --text-color-2: white;
+  --overlay-color: rgb(255 255 255 / 70%);
+}
+
+#contactUsPage html,
+body {
+  height: 100%;
+}
+
+#contactUsPage body {
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background-color: white;
+  color: var(--text-color);
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-top: 60px;
+  border-left: 10px solid var(--primary-color);
+  border-right: 10px solid var(--primary-color);
+}
+
+#contactUsPage ul {
+  list-style: none;
+}
+
+#contactUsPage h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Raleway", sans-serif;
+}
+
+#contactUsPage a,
+a:hover {
+  color: var(--text-color);
+}
+
+#contactUsPage p {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+#contactUsPage ovhidden {
+  overflow: hidden;
+}
+
+#contactUsPage text_2,
+#contactUsPage text_2:hover {
+  color: var(--text-color-2);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+#contactUsPage cursor__dot div {
+  z-index: 999999 !important;
+}
+
+#contactUsPage cursor__dot div:last-child {
+  filter: invert(1);
+  background-color: var(--primary-color) !important;
+}
+
+#contactUsPage cursor__dot div:first-child {
+  filter: invert(1);
+  background-color: var(--overlay-color) !important;
+}
+
+#contactUsPage color_pr {
+  color: var(--primary-color) !important;
+}
+
+#contactUsPage color_sec {
+  color: var(--secondary-color);
+}
+
+#contactUsPage contact__form #contactUsPage form-control {
+  padding: 1.375rem .75rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: white;
+  border-radius: 0 !important;
+  border: 1px solid var(--secondary-color);
+}
+
+#contactUsPage contact__form input#contactUsPage form-control {
+  margin-bottom: 2em;
+  height: calc(2.5em + .75rem + 2px);
+}
+
+#contactUsPage loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  z-index: 999999999;
+  background: var(--text-color);
+  transform: translateX(100%);
+  animation: shift-rightwards 1s ease-in-out infinite;
+  animation-delay: .3s;
+}
+
+@keyframes shift-rightwards {
+  0% {
+      transform: translateX(-100%);
+  }
+  40% {
+      transform: translateX(0%);
+  }
+  60% {
+      transform: translateX(0%);
+  }
+  100% {
+      transform: translateX(100%);
+  }
+}
+/* #contactUsPage btn{
+  color:white;
+}
+*/
+
+#contactUsPage btn{
+border: none;
+font-size: 16px;
+color: #FFF;
+padding: 8px 16px;
+background-color: #212529;
+border-radius: 6px;
+margin: 14px;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+#contactUsPage btn:hover{
+background: #212529;
+}
+
+
+
+#contactUsPage two h1 {
+  text-transform: capitalize;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  color: #080808;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+#contactUsPage two h1:before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 2px;
+  content: "";
+  background-color: #c50000;
+}
+
+#contactUsPage two h1 span {
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  line-height: 3em;
+  padding-left: 0.25em;
+  color: rgba(0, 0, 0, 0.4);
+  padding-bottom: 10px;
+}
+#contactUsPage alt-two h1 {
+  text-align:center;
+}
+#contactUsPage alt-two h1:before {
+  left:50%; margin-left:-30px;
+}
+
+#contactUsPage alt-two h1 span {
+  display: block;
+  font-size: 0.3em;
+  line-height: 2;
+}
+
+#contactUsPage contact #contactUsPage info strong {
+  font-size: 32px;
+  color: #3498db;
+  float: left;
+  line-height: 1;
+}
+
+#contactUsPage i-am-centered { margin: auto; max-width: 300px;}
+
+/* ####################################### Header CSS #############################################  */
+.masthead .a {
+  fill: none;
+}
+
+.masthead .b {
+  clip-path: url(#a);
+}
+
+.masthead .c,
+.masthead .d {
+  fill: #f9f9fc;
+}
+
+.masthead .d {
+  opacity: 0.5;
+  isolation: isolate;
+}
+
+
+.masthead body{margin-top:20px;}
+
+.masthead {
+  padding: 3rem 0 7rem;
+  position: relative;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url("./image/header_img.jpg");
+  background-size: cover;
+  z-index: 0
+}
+
+.masthead button{
+  font-size: 2rem;
+}
+.masthead svg.wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0
+}
+
+.masthead h1 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.1;
+  z-index: 1
+}
+
+.masthead h2 {
+  color: rgba(255, 255, 255, .6);
+  font-weight: 600;
+  z-index: 1;
+  font-size: 1.2rem
+}
+
+.masthead a {
+  color: rgba(255, 255, 255, .8);
+  text-decoration: underline;
+  z-index: 1
+}
+
+.masthead a:hover {
+  color: #fff
+}
+
+.masthead a:active {
+  text-decoration: none
+}
+
+@media(min-width:992px) {
+  .masthead h1 {
+      font-size: 3rem
+  }
+  .masthead h2 {
+      font-size: 1.5rem
+  }
+}
+
+.masthead .masthead-cards {
+  position: relative;
+  z-index: 1
+}
+
+.masthead .masthead-cards .card {
+  opacity: 1;
+  font-size: .8rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .05rem;
+  color: #212529;
+  transition: .15s all
+}
+
+.masthead .masthead-cards .card:hover {
+  margin-top: -.25rem;
+  margin-bottom: .25rem
+}
+
+.masthead .masthead-cards .card:active {
+  margin-top: inherit;
+  margin-bottom: inherit
+}
+
+.masthead .masthead-cards .card.border-bottom-blue:hover {
+  color: #2092ed
+}
+
+.masthead .masthead-cards .card.border-bottom-green:hover {
+  color: #28a745
+}
+
+.masthead .masthead-cards .card.border-bottom-red:hover {
+  color: black
+}
+
+.masthead .masthead-cards .card.border-bottom-yellow:hover {
+  color: #ffc107
+}
+
+.masthead-page {
+  padding: 1rem 0 4rem
+}
+
+@media(min-width:992px) {
+  .masthead-page h1 {
+      font-size: 2.5rem
+  }
+}
+
+.border-bottom-yellow {
+  border-color: #ffc107!important;
+}
+
+.border-bottom-red {
+  border-color: #dd3d31!important;
+}
+
+.border-bottom-blue {
+  border-color: #2092ed!important;
+}
+
+.border-bottom-green {
+  border-color: #28a745!important;
+}
+
+.border-bottom-blue, .border-bottom-green, .border-bottom-red, .border-bottom-yellow {
+  border-bottom: .4rem solid!important;
+}
+.shadow-lg {
+  box-shadow: 0 2rem 1.5rem -1.5rem rgba(33,37,41,.15),0 0 1.5rem .5rem rgba(33,37,41,.05)!important;
+}
+.border-0 {
+  border: 0!important;
+}

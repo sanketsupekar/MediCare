@@ -47,6 +47,7 @@ export default function PatientHeader(patientUser) {
                         alt="Admin"
                         width="150"
                         height="150"
+                        class="rounded-circle"
                       ></img>
                       <div class="mt-3">
                         <h4>{patientUser.firstName}</h4>
