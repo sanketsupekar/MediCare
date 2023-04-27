@@ -30,6 +30,7 @@ const {
   searchDoctor,
   updateDoctor,
   doctorProfileUpdate,
+  deleteDoctor,
 } = require("../controllers/doctor.controller");
 const {
   incrementId,
@@ -272,6 +273,18 @@ router.post("/addDoctor", (req, res) => {
       res.status(500).json({ message: "Internet Server Error" });
     });
 });
+
+router.delete("/deleteDoctor", (req, res) => {
+  console.log(req.body);
+  deleteDoctor(req)
+  .then((result) => {
+    res.status(200).json(result);
+  })
+  .catch((e) => {
+    res.status(500).json({ message: "Internet Server Error" });
+  });
+});
+
 
 router.post("/doctorUpdate", (req, res) => {
   updateDoctor(req)

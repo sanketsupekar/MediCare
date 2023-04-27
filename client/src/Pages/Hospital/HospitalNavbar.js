@@ -78,6 +78,13 @@ export default function PatientNavbar() {
                   </a>
                 </Link>
               </li>
+              <li className="nav-item mx-2">
+                <Link to="/deleteDoctor" className="text-decoration-none">
+                  <a className="nav-link active" aria-current="page">
+                    DELETE-DOCTOR
+                  </a>
+                </Link>
+              </li>
 
               <li className="nav-item mx-2">
                 <Link className="text-decoration-none">

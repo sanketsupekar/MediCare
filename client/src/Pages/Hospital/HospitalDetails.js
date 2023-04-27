@@ -18,16 +18,16 @@ export default function HospitalDetails() {
 
   const [hospitalData, setHospitalData] = useState({});
   const [doctorData, setDoctorData] = useState([]);
- 
-  async function fetchingData(searchUrl,typeOfSearch) {
+
+  async function fetchingData(searchUrl, typeOfSearch) {
     const respones = await fetch(searchUrl + state.h_id).catch((e) =>
       console.error(e)
     );
     const json = respones ? await respones.json() : [];
-    if(typeOfSearch === 0)setHospitalData(json[0]);
-    if(typeOfSearch === 1) setDoctorData(json);
+    if (typeOfSearch === 0) setHospitalData(json[0]);
+    if (typeOfSearch === 1) setDoctorData(json);
     //console.log(json);
-    }
+  }
 
   function bookAppointment() {
     alert("Book Appointment");
@@ -36,15 +36,14 @@ export default function HospitalDetails() {
     setEdit(!isEdit);
   }
 
-  
   useEffect(() => {
     // 0 -> Search Hospital
-    fetchingData(searchHospital,0);
+    fetchingData(searchHospital, 0);
   });
 
   useEffect(() => {
     // 1 -> Search Doctors
-    fetchingData(searchDoctor,1);
+    fetchingData(searchDoctor, 1);
   });
 
   return (
@@ -74,26 +73,20 @@ export default function HospitalDetails() {
                       <div className=" w-50">
                         <h2 className="my-2">{hospitalData.name} Hospital</h2>
                         <p className="text-muted mb-4">
-                          Lorem ipsum dolor sit, amet consectetur adipisicing
-                          elit. Eaque eveniet eius dolorem sint assumenda,
-                          dignissimos magni dicta velit numquam excepturi nobis
-                          provident vitae facere totam ea et ab deleniti!
-                          Incidunt? Lorem ipsum dolor sit amet consectetur
-                          adipisicing elit. Perspiciatis fugiat minima
-                          praesentium provident at quaerat architecto adipisci
-                          rerum reiciendis? Incidunt maiores explicabo eaque
-                          dolor sequi, saepe facilis error numquam dolorem?
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Ducimus, similique minus saepe distinctio,
-                          facilis excepturi, mollitia quos dicta vero et iure
-                          adipisci quod itaque ipsum esse praesentium iusto
-                          impedit temporibus! Lorem ipsum dolor sit amet
-                          consectetur adipisicing elit. Minima voluptas iusto
-                          praesentium voluptatem? Asperiores quo rem aperiam
-                          voluptatibus eaque magnam itaque, rerum doloremque
-                          earum, vel eum excepturi corrupti officiis et!
-                          mollitia quos dicta vero et iure adipisci quod itaque
-                          ipsum esse praesentium iusto impedit temporibus!
+                          {hospitalData.name} Hospital is a
+                          state-of-the-art medical facility located in {hospitalData.address}. With a focus on {hospitalData.speciality} care, Hospital
+                          provides exceptional treatment to patients with
+                          various types of {hospitalData.speciality}. The hospital has a team of
+                          highly skilled and experienced oncologists, nurses,
+                          and support staff who work together to provide
+                          personalized care to each patient. The hospital's
+                          facilities include advanced diagnostic equipment,
+                          including MRI, CT scan, and PET-CT, which enable
+                          accurate diagnosis of cancer and help doctors develop
+                          a customized treatment plan for each patient. In
+                          addition, the hospital has well-equipped operation
+                          theaters and intensive care units to cater to the
+                          needs of critically ill patients.
                         </p>
                       </div>
 
@@ -127,8 +120,8 @@ export default function HospitalDetails() {
                   </div>
                 </div>
                 <ProfileInfo {...hospitalData} />
-                <DoctorList doctorData = {doctorData} />
-                
+                <DoctorList doctorData={doctorData} />
+
                 {isEdit ? <ProfileUpdate {...hospitalData} /> : <></>}
               </div>
             </div>

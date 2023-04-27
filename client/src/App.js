@@ -18,6 +18,7 @@ import LoginRequired from './Pages/LoginRequired';
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HospitalAddDoctor from './Pages/Hospital/HospitalAddDoctor';
+import HospitalDeleteDoctor from './Pages/Hospital/HospitalDeleteDoctor';
 import DoctorExplore from './Pages/Doctor/DoctorExplore';
 import HospitalDetails from './Pages/Hospital/HospitalDetails';
 import GetAppointment from './Pages/Patient/GetAppointment';
@@ -45,6 +46,7 @@ function App() {
           <Route path="hospitalDetails" element={<HospitalDetails />} />
           <Route path="addDoctor" element={<HospitalAddDoctor />} />
 
+          <Route path="deleteDoctor" element={<HospitalDeleteDoctor />} />
           <Route path="doctorLogin" element={<DoctorLogin />} />
           <Route path="doctorHome" element={<DoctorHome />}></Route>
           <Route path="doctorExplore" element={<DoctorExplore />}></Route>

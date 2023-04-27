@@ -57,4 +57,11 @@ async function doctorProfileUpdate(id,url)
     return profileUpdate;
 }
 
-module.exports = { doctorRegister, doctorLogin, searchDoctor, updateDoctor,doctorProfileUpdate };
+async function deleteDoctor(request) {
+  const data = request.body;
+  const deleteData = await Doctor.deleteOne(data);
+  return deleteData;
+}
+
+
+module.exports = { doctorRegister, doctorLogin, searchDoctor, updateDoctor,doctorProfileUpdate,deleteDoctor };

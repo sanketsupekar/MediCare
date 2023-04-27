@@ -11,17 +11,21 @@ export default function DoctorList({ doctorData }) {
             <div className="card-body">
               <div className="row">
                 <div className="col-sm-3">
-                  <h6 className="text-monospacemb-0">Doctor ID</h6>
+                  <h6 className="text-monospace mb-0">Doctor ID</h6>
                 </div>
-                <div className="col-sm-3">
+                <div className="col-sm-2">
                   <h6 className="mb-0">Doctor Name</h6>
                 </div>
-                <div className="col-sm-3">
+                <div className="col-sm-2">
                   <h6 className="mb-0">Specility</h6>
                 </div>
-                <div className="col-sm-3">
+                <div className="col-sm-2">
                   <h6 className="mb-0">View</h6>
                 </div>
+                <div className="col-sm-2">
+                  <h6 className="mb-0">Delete Doctor</h6>
+                </div>
+
               </div>
               <hr />
               {doctorData.map((user, key) => {
