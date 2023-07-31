@@ -64,19 +64,31 @@ in, Profile updating, Appointment Schedule, Book Appointment and View status
 ![op9](https://github.com/sanketsupekar/MediCare/assets/72608053/95578486-47b8-41cd-937c-365b360bd20c)
 ### Patient Home Page
 ![op10](https://github.com/sanketsupekar/MediCare/assets/72608053/8231911a-0abe-4c6d-a3c4-abdfa0d743a1)
+### Update Profile
+![op20](https://github.com/sanketsupekar/MediCare/assets/72608053/57010607-0d4b-4be3-92a4-10f41ce69fd0)
 ### Search Hospital's using any keyword e.g Hospital Name, Hospital City, Hospital Speciality etc.
 ![op11](https://github.com/sanketsupekar/MediCare/assets/72608053/77f7c913-ab5d-4401-acf8-fa60641c159e)
 ### Search Doctor's using any keyword e.g Doctor Name, Dcotor Speciality, Hospital Name etc.
 ![op12](https://github.com/sanketsupekar/MediCare/assets/72608053/f7e82900-168f-478e-9caa-1bd0a96c25d3)
-
 ![op13](https://github.com/sanketsupekar/MediCare/assets/72608053/6c26b476-94ab-4e8b-becc-c86eef42a9fb)
+
+### Hospital Details
 ![op14](https://github.com/sanketsupekar/MediCare/assets/72608053/e4cd06e1-b901-4668-ba5d-2e4812868155)
+
+### Doctors working in hospital
 ![op15](https://github.com/sanketsupekar/MediCare/assets/72608053/ff2975c0-d2c2-4ac2-96ef-697b3a88b65b)
+
+### Doctor Details and Appointment Button
 ![op16](https://github.com/sanketsupekar/MediCare/assets/72608053/87638c33-23f5-4d92-aa79-c3dd25ceeaad)
+
+### Book Appointment
 ![op17](https://github.com/sanketsupekar/MediCare/assets/72608053/80142e0a-12fb-4043-9032-5785fa0be206)
+
+### View Pending and Scheduled Appointment
 ![op18](https://github.com/sanketsupekar/MediCare/assets/72608053/8b583b88-19a3-47fd-8935-eb7f03f0d16f)
+### View Rejected Appointment with Rejection reasone
 ![op19](https://github.com/sanketsupekar/MediCare/assets/72608053/0c4e8320-f1ac-4bce-a677-c165d8838592)
-![op20](https://github.com/sanketsupekar/MediCare/assets/72608053/57010607-0d4b-4be3-92a4-10f41ce69fd0)
+
 ![op21](https://github.com/sanketsupekar/MediCare/assets/72608053/04e9925b-daac-45f0-887a-790899de4c60)
 ![op22](https://github.com/sanketsupekar/MediCare/assets/72608053/2820b921-20d4-4a41-b42f-08659efe2b81)
 ![op23](https://github.com/sanketsupekar/MediCare/assets/72608053/1f25cf3d-3cd1-4e07-9ee6-832bacaee2a8)
