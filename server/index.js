@@ -3,6 +3,7 @@ const express = require("express");
 const apiRouter = require("./routes");
 const port = process.env.PORT || 3001;
 const { connectToDb } = require("./controllers/mongoose.controller");
+const path = require("path");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
@@ -13,6 +14,10 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 connectToDb();
 app.use("/api", apiRouter);
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.use("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
 
 app.listen(port, () => {
   console.log("Server is ready to listening....", port);

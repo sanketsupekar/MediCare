@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import DoctorListRow from "./DoctorListRow";
+import { useStateValue } from "../../../Context/StateProvider";
+
 export default function DoctorList({ doctorData }) {
+  //console.log(doctorData);
+  const [{ HospitalUser }, dispatchHospital] = useStateValue();
 
   return (
     <>
@@ -22,9 +26,11 @@ export default function DoctorList({ doctorData }) {
                 <div className="col-sm-2">
                   <h6 className="mb-0">View</h6>
                 </div>
+                {
+                  HospitalUser != null ? 
                 <div className="col-sm-2">
                   <h6 className="mb-0">Delete Doctor</h6>
-                </div>
+                </div> : <></>}
 
               </div>
               <hr />

@@ -30,12 +30,13 @@ async function doctorLogin(req) {
 }
 async function searchDoctor(req) {
   const searchQuery = req.query.search && req.query.search.toLowerCase();
-  // console.log(searchQuery);
-  // if(isHospitalId(searchQuery))
-  // {
-  //   const doctorData = await Doctor.find({h_id : searchQuery})
-  //   return doctorData;
-  // }
+  //console.log(searchQuery);
+  if(isHospitalId(searchQuery))
+  {
+    const doctorData = await Doctor.find({h_id : searchQuery.toUpperCase()})
+    //console.log(doctorData);
+    return doctorData;
+  }
 
   const doctorData = await Doctor.find({
     $or: [

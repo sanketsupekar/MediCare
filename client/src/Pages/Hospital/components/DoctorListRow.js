@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useStateValue } from "../../../Context/StateProvider";
 
 export default function DoctorListRow(props) {
   const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
+  const [{ HospitalUser }, dispatchHospital] = useStateValue();
+
   const deleteUrl = "/api/deleteDoctor";
   function viewMoreClick() {
     navigate("/doctorDetails", { state: props });
@@ -18,7 +21,7 @@ export default function DoctorListRow(props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({d_id : d_id}),
+        body: JSON.stringify({ d_id: d_id }),
       });
     } catch (e) {
       console.log("Error deleting contacts " + e);
@@ -64,15 +67,19 @@ export default function DoctorListRow(props) {
             View More
           </button>
         </div>
-        <div className="col-sm-2 align-self-center">
-          <button
-            className="btn btn-danger"
-            // style={{ fontSize: "0.6rem", margin: "0" }}
-            onClick={deleteClick}
-          >
-            Delete
-          </button>
-        </div>
+        {HospitalUser != null ? (
+          <div className="col-sm-2 align-self-center">
+            <button
+              className="btn btn-danger"
+              // style={{ fontSize: "0.6rem", margin: "0" }}
+              onClick={deleteClick}
+            >
+              Delete
+            </button>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       <hr />{" "}
     </>

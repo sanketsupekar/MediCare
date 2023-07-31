@@ -58,7 +58,7 @@ export default function Footer(props) {
           >
             © 2020 Copyright :
             <a className="text-white" href="https://mdbootstrap.com/">
-              Sanket And Sanskruti
+              Sanket Supekar
             </a>
           </div>
         </footer>
