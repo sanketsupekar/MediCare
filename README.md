@@ -70,6 +70,7 @@ in, Profile updating, Appointment Schedule, Book Appointment and View status
 ![op11](https://github.com/sanketsupekar/MediCare/assets/72608053/77f7c913-ab5d-4401-acf8-fa60641c159e)
 ### Search Doctor's using any keyword e.g Doctor Name, Dcotor Speciality, Hospital Name etc.
 ![op12](https://github.com/sanketsupekar/MediCare/assets/72608053/f7e82900-168f-478e-9caa-1bd0a96c25d3)
+### Search Doctor's
 ![op13](https://github.com/sanketsupekar/MediCare/assets/72608053/6c26b476-94ab-4e8b-becc-c86eef42a9fb)
 
 ### Hospital Details
@@ -86,18 +87,31 @@ in, Profile updating, Appointment Schedule, Book Appointment and View status
 
 ### View Pending and Scheduled Appointment
 ![op18](https://github.com/sanketsupekar/MediCare/assets/72608053/8b583b88-19a3-47fd-8935-eb7f03f0d16f)
-### View Rejected Appointment with Rejection reasone
+### View Rejected Appointment with Rejection Reasone
 ![op19](https://github.com/sanketsupekar/MediCare/assets/72608053/0c4e8320-f1ac-4bce-a677-c165d8838592)
 
-![op21](https://github.com/sanketsupekar/MediCare/assets/72608053/04e9925b-daac-45f0-887a-790899de4c60)
+### Doctor Login
 ![op22](https://github.com/sanketsupekar/MediCare/assets/72608053/2820b921-20d4-4a41-b42f-08659efe2b81)
+
+### Doctor Home Page
+![op21](https://github.com/sanketsupekar/MediCare/assets/72608053/04e9925b-daac-45f0-887a-790899de4c60)
+
+### Appointment's
 ![op23](https://github.com/sanketsupekar/MediCare/assets/72608053/1f25cf3d-3cd1-4e07-9ee6-832bacaee2a8)
+### Appointment's
 ![op24](https://github.com/sanketsupekar/MediCare/assets/72608053/c0707c5e-f74b-47d3-bd50-5b7a1e81073a)
+
+### Appointment Details
 ![op25](https://github.com/sanketsupekar/MediCare/assets/72608053/dee6ef37-2dda-4a0b-ae78-d493dda4a4c8)
-![op26](https://github.com/sanketsupekar/MediCare/assets/72608053/bf14077f-eb3a-466b-9490-441641161c63)
+
+
+### Hospital Login
 ![op27](https://github.com/sanketsupekar/MediCare/assets/72608053/77308013-fd9c-4f3e-9253-f84e53448336)
 
+### Add Doctor
+![op26](https://github.com/sanketsupekar/MediCare/assets/72608053/bf14077f-eb3a-466b-9490-441641161c63)
 
-
+### Delete Doctor
+![op27](https://github.com/sanketsupekar/MediCare/assets/72608053/05a16969-1ac1-411f-8928-b895409b2486)
 
 
